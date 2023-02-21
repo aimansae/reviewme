@@ -1,0 +1,44 @@
+.Row {
+    height: calc(100vh - 81px);
+  }
+  .Input {
+
+    box-sizing: border-box;
+    border-radius: 2px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .Header {
+    font-weight: bolder;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #13b83c;
+    padding:2%;
+  }
+  
+  .Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+    color: #13b83c;
+  }
+  
+  .Link span {
+    color: #1a5ebd;
+  }
+  
+  .Container {
+    padding: 30px 10px;
+  }
+  
+  .SignInCol {
+    height: 320px;
+  }
+  
+  .SignUpCol {
+    height: 375px;
+  }
