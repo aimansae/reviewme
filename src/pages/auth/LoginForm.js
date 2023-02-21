@@ -42,10 +42,10 @@ function LoginForm() {
     // to avoid that the page refreshes
     event.preventDefault();
     try{
-      await axios.post('/dj-rest-auth-login/')
-      history.push('/')
-    }catch(err){
-      setErrors(err.response?.data)
+      await axios.post("/dj-rest-auth/login/", loginData)
+      history.push("/")
+    } catch(err){
+      setErrors(err.response?.data);
       
     }
   }
