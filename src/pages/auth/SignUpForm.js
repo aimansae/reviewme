@@ -5,7 +5,7 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 import axios from "axios";
 
 const SignUpForm = () => {
@@ -44,7 +44,7 @@ const SignUpForm = () => {
     return (
         <Row className={styles.Row}>
             <Col className="my-auto py-2 p-md-2 offset-2" md={8}>
-                <Container className={`${appStyles.Content}`}>
+                <Container className={appStyles.Content}>
                     <h1 className={styles.Header}>sign up</h1>
 
                     <Form onSubmit={handleSubmit}>
