@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
@@ -13,8 +13,11 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
+import { SetCurrentUserContext } from "../../App";
 
 function LoginForm() {
+  const setCurrentUser = useContext(SetCurrentUserContext)
+
 
   const [loginData, setLoginData] = useState({
     username: '',
@@ -26,7 +29,6 @@ function LoginForm() {
 
   const [errors, setErrors] = useState({})
 
-  const history = useHistory()
   // onchange handler
 
   const handleChange = (event) => {
@@ -37,12 +39,14 @@ function LoginForm() {
   }
 
   // form submit handler
+  const history = useHistory()
 
   const handleSubmit = async (event) => {
     // to avoid that the page refreshes
     event.preventDefault();
     try{
-      await axios.post("/dj-rest-auth/login/", loginData)
+      const {data} = await axios.post("/dj-rest-auth/login/", loginData)
+      setCurrentUser(data.user)
       history.push("/")
     } catch(err){
       setErrors(err.response?.data);
@@ -96,9 +100,14 @@ function LoginForm() {
             </Alert>
              ))}
             
-            <Button variant='success' className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}>
-              Login
+            <Button variant='success' className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+              type='submit'>Login
             </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                {message}
+              </Alert>
+            ))}
           </Form>
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>

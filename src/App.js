@@ -5,22 +5,52 @@ import { Route, Switch } from 'react-router-dom'
 import './api/axiosDefaults'
 import SignUpForm from './pages/auth/SignUpForm';
 import LoginForm from './pages/auth/LoginForm';
+import { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
+
+export const CurrentUserContext = createContext()
+export const SetCurrentUserContext = createContext()
+
 
 function App() {
+  //to check currently logged user state
+
+  const [currentUser, setCurrentUser] = useState(null)
+
+  const handleMount = async () => {
+    try {
+      // destructuring data property
+      const { data } = await axios.get("dj-rest-auth/user/");
+      setCurrentUser(data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    handleMount()
+
+  }, [])
+
   return (
-    <div className={styles.App}>
-      <NavBar />
-      <Container className={styles.Spacing}>
-        <Switch>
-          <Route exact path='/' render={() => <h1>Home Page</h1>} />
-          <Route exact path='/login' render={() => <LoginForm/>} />
-          <Route exact path='/signup' render={() => <SignUpForm/>} />
-          <Route exact path='/contact' render={() => <h1>Contact</h1>} />
+    <CurrentUserContext.Provider value={currentUser}>
+      <SetCurrentUserContext.Provider value={setCurrentUser}>
+        <div className={styles.App}>
+          <NavBar />
+          <Container className={styles.Spacing}>
 
-        </Switch>
+            <Switch>
+              <Route exact path='/' render={() => <h1>Home Page</h1>} />
+              <Route exact path='/login' render={() => <LoginForm />} />
+              <Route exact path='/signup' render={() => <SignUpForm />} />
+              <Route exact path='/contact' render={() => <h1>Contact</h1>} />
+              <Route render = {() => <p>Page Not found</p>} />
+            </Switch>
 
-      </Container>
-    </div>
+          </Container>
+        </div>
+      </SetCurrentUserContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

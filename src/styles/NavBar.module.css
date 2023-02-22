@@ -1,6 +1,6 @@
 .NavBar{
     border-bottom: 1px solid #8a8a8e;
-    
+    position: static;;
     
 }
 
@@ -12,3 +12,4 @@
 .Active {
     color:rgb(40, 8, 165)
 }
+

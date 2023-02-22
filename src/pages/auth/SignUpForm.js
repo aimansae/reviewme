@@ -34,7 +34,7 @@ const SignUpForm = () => {
         // to avoit that the page refreshes
         event.preventDefault();
         try {
-            await axios.post('/dj-rest-auth/registration/',signUpData)
+            await axios.post("/dj-rest-auth/registration/", signUpData)
             history.push('/login')
         } catch (err) {
             setErrors(err.response?.data)
