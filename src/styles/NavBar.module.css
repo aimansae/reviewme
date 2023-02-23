@@ -1,15 +1,22 @@
-.NavBar{
+.NavBar {
     border-bottom: 1px solid #8a8a8e;
-    position: static;;
-    
+    position: static;
+
 }
 
-.NavLink{
-    padding:5px;
-    color:#41ac0c;
+.NavLink {
+    padding: 5px;
+    color: #2f8305;
 }
 
 .Active {
-    color:rgb(40, 8, 165)
+    color: rgb(40, 8, 165);
+    /*box-shadow: 1px 3px 15px 0px;*/
+    font-weight: bold;
+}
+
+.NavBar i {
+    font-size: 20px;
+    color: #b9e53a
 }
 
