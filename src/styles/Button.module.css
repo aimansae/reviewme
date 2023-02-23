@@ -32,7 +32,7 @@
   margin-left:20% ;
 }
 
-.Blue,
+.Green,
 .BlueOutline:hover,
 .Bright:hover {
   background-color: #2142b2;
@@ -65,5 +65,10 @@
 
 .Bright {
   background-color: #3fff2e;
+  color: #000000;
+}
+
+.Green{
+  background-color: #3fff2e !important;
   color: #000000;
 }
