@@ -16,43 +16,41 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
 
 function LoginForm() {
-  const setCurrentUser = useSetCurrentUser()
+  const setCurrentUser = useSetCurrentUser();
 
   const [loginData, setLoginData] = useState({
-    username: '',
-    password: '',
-  })
+    username: "",
+    password: "",
+  });
 
   //destructuring signUpData
-  const { username, password } = loginData
+  const { username, password } = loginData;
 
-  const [errors, setErrors] = useState({})
+  const [errors, setErrors] = useState({});
 
   // onchange handler
 
   const handleChange = (event) => {
     setLoginData({
       ...loginData,
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
   // form submit handler
-  const history = useHistory()
+  const history = useHistory();
 
   const handleSubmit = async (event) => {
     // to avoid that the page refreshes
     event.preventDefault();
-    try{
-      const {data} = await axios.post("/dj-rest-auth/login/", loginData)
-      setCurrentUser(data.user)
-      history.push("/")
-    } catch(err){
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", loginData);
+      setCurrentUser(data.user);
+      history.push("/");
+    } catch (err) {
       setErrors(err.response?.data);
-      
     }
-  }
-
+  };
 
   return (
     <Row className={styles.Row}>
@@ -71,14 +69,12 @@ function LoginForm() {
                 value={username}
                 onChange={handleChange}
               />
-
             </Form.Group>
 
             {errors.username?.map((message, idx) => (
-            <Alert className="text-center" 
-            variant="danger" 
-            key={idx}>{message}
-            </Alert>
+              <Alert className="text-center" variant="danger" key={idx}>
+                {message}
+              </Alert>
             ))}
 
             <Form.Group controlId="password">
@@ -92,15 +88,18 @@ function LoginForm() {
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.password?.map((message, idx) =>(
-            <Alert className="text-center" 
-            variant="danger" 
-            key={idx}>{message}
-            </Alert>
-             ))}
-            
-            <Button variant='success' className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
-              type='submit'>Login
+            {errors.password?.map((message, idx) => (
+              <Alert className="text-center" variant="danger" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Button
+              variant="success"
+              className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
+              type="submit"
+            >
+              Login
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
@@ -115,7 +114,6 @@ function LoginForm() {
           </Link>
         </Container>
       </Col>
-
     </Row>
   );
 }

@@ -6,7 +6,7 @@ axios.defaults.baseURL = "https://drf-reviewme.herokuapp.com/";
 
 // data format api expects, multiparts with images
 
-axios.defaults.headers.post["Content-Type"] = "mutipart/form-data";
+axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
 //to avoid CORS errors when sending cookies
 

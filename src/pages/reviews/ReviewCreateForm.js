@@ -5,6 +5,9 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+import Image from "react-bootstrap/Image";
+
 
 import Upload from "../../assets/upload.png";
 
@@ -12,7 +15,6 @@ import Asset from "../../components/Asset";
 import styles from "../../styles/ReviewCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { Image } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import StarRating from "./StarRating";
@@ -20,18 +22,21 @@ import StarRating from "./StarRating";
 function ReviewCreateForm() {
   const [errors, setErrors] = useState({});
 
+  {/*rating: "", */ }
+
+
   const [postData, setPostData] = useState({
     product_title: "",
     description: "",
     image: "",
     price: "",
-    rating: "",
+
   });
 
   {
-    /*rating: "", */
+    /*rating: "", formData.append("rating", rating); */
   }
-  const { product_title, description, image, price, rating } = postData;
+  const { product_title, description, image, price } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -61,8 +66,8 @@ function ReviewCreateForm() {
     formData.append("description", description);
     formData.append("image", imageInput.current.files[0]);
     formData.append("price", price);
-    formData.append("rating", rating);
-  
+
+
     try {
       const { data } = await axiosReq.post("/reviews/", formData);
       history.push(`/reviews/${data.id}`);
@@ -79,19 +84,6 @@ function ReviewCreateForm() {
       {/* RATING */}
 
 
-      
-      <StarRating
-  
-        
-          type="text"
-          name="rating"
-          value={rating}
-          onChange={handleChange}
-        />
-
-    
-
-
       <Form.Group>
         <Form.Label>Product Title</Form.Label>
         <Form.Control
@@ -101,7 +93,11 @@ function ReviewCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-
+      {errors?.product_title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group controlId="description">
         <Form.Label>Description</Form.Label>
@@ -114,19 +110,34 @@ function ReviewCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.description?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-      {/* Price */}
-      <Form.Group>
-        <Form.Label>
-          Price €  <span>(Optional)</span>
+      <Form.Group as={Row}>
+        <Form.Label column sm="2">
+          Price €:
         </Form.Label>
-        <Form.Control
-          type="number"
-          name="price"
-          value={price}
-          onChange={handleChange}
-        />
+        <Col sm={2}>
+          <Form.Control
+            type="number"
+            name="price"
+            value={price}
+
+            onChange={handleChange}
+
+          />
+
+        </Col>
       </Form.Group>
+      {errors?.price?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
     </div>
   );
 
@@ -171,15 +182,22 @@ function ReviewCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
             <div className="text-center">
               <Button
                 variant="success"
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                onClick={() => { }}
+                onClick={() => history.goBack()}
+
               >
                 cancel
               </Button>
+
               <Button
                 variant="success"
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
@@ -187,6 +205,11 @@ function ReviewCreateForm() {
               >
                 create
               </Button>
+              {errors?.non_field_errors?.map((message, idx) => (
+                <Alert key={idx} variant="warning" className="mt-3">
+                  {message}
+                </Alert>
+              ))}
             </div>
           </Container>
         </Col>
