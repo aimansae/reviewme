@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -7,55 +7,101 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
 import Upload from "../../assets/upload.png";
-import Asset from "../../components/Asset"
+
+import Asset from "../../components/Asset";
 import styles from "../../styles/ReviewCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { Image } from "react-bootstrap";
+import { useHistory } from "react-router";
+import { axiosReq } from "../../api/axiosDefaults";
+import StarRating from "./StarRating";
 
 function ReviewCreateForm() {
-
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
-    title: "",
+    product_title: "",
     description: "",
     image: "",
-  })
+    price: "",
+    rating: "",
+  });
 
-  const { title, description, image } = postData
+  {
+    /*rating: "", */
+  }
+  const { product_title, description, image, price, rating } = postData;
+
+  const imageInput = useRef(null);
+  const history = useHistory();
 
   const handleChange = (event) => {
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
-    })
-  }
+    });
+  };
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
-      URL.revokeObjectURL(image)
+      URL.revokeObjectURL(image);
       setPostData({
         ...postData,
         image: URL.createObjectURL(event.target.files[0]),
-      })
-
+      });
     }
-  }
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("product_title", product_title);
+    formData.append("description", description);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append("price", price);
+    formData.append("rating", rating);
+  
+    try {
+      const { data } = await axiosReq.post("/reviews/", formData);
+      history.push(`/reviews/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
 
   const textFields = (
-    <div className="text-center">
-      {/* Add your form fields here */}
-      <Form.Group controlId="title">
+    <div className={styles.TextLeft}>
+      {/* RATING */}
+
+
+      
+      <StarRating
+  
+        
+          type="text"
+          name="rating"
+          value={rating}
+          onChange={handleChange}
+        />
+
+    
+
+
+      <Form.Group>
         <Form.Label>Product Title</Form.Label>
         <Form.Control
           type="text"
-          name="title"
-          value={title}
+          name="product_title"
+          value={product_title}
           onChange={handleChange}
-
         />
       </Form.Group>
+
 
       <Form.Group controlId="description">
         <Form.Label>Description</Form.Label>
@@ -63,24 +109,32 @@ function ReviewCreateForm() {
           as="textarea"
           rows={4}
           name="description"
+          placeholder="Describe the product.."
           value={description}
           onChange={handleChange}
         />
       </Form.Group>
 
-
-
-
-
+      {/* Price */}
+      <Form.Group>
+        <Form.Label>
+          Price €  <span>(Optional)</span>
+        </Form.Label>
+        <Form.Control
+          type="number"
+          name="price"
+          value={price}
+          onChange={handleChange}
+        />
+      </Form.Group>
     </div>
   );
 
   return (
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Row>
-        <Col md={6} xl={8} className="d-md-block p-0 p-md-2 offset-2">
-          <Container className={appStyles.Content}>{textFields}
-          </Container>
+        <Col md={6} xl={8} className="p-0 p-md-2 offset-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
         <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
           <Container
@@ -89,56 +143,53 @@ function ReviewCreateForm() {
             <Form.Group className="text-center">
               {image ? (
                 <>
-                <figure>
-                  <Image className={appStyles.Image} src={image} rounded/>
-                </figure>
-                <div>
-                  <Form.Label 
-                  className={`${btnStyles.Button}${btnStyles.Green} btn `}
-                  htmlFor="image-upload"
-                  >
-
-                  
-                  Change Image
-                  </Form.Label>
-                </div>
+                  <figure>
+                    <Image className={appStyles.Image} src={image} rounded />
+                  </figure>
+                  <div>
+                    <Form.Label
+                      className={`${btnStyles.Button}${btnStyles.Green} btn `}
+                      htmlFor="image-upload"
+                    >
+                      Change Image
+                    </Form.Label>
+                  </div>
                 </>
-
               ) : (
                 <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              >
-                <Asset src={Upload} message="Click to upload product image" />
-              </Form.Label>
-
+                  className="d-flex justify-content-center"
+                  htmlFor="image-upload"
+                >
+                  <Asset src={Upload} message="Click to upload product image" />
+                </Form.Label>
               )}
 
-             
               <Form.File
                 id="image-upload"
                 accept="image/*"
                 onChange={handleChangeImage}
+                ref={imageInput}
               />
-
             </Form.Group>
 
             <div className="text-center">
               <Button
-                variant='success'
+                variant="success"
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
                 onClick={() => { }}
               >
                 cancel
               </Button>
-              <Button variant='success' className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+              <Button
+                variant="success"
+                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                type="submit"
+              >
                 create
               </Button>
             </div>
           </Container>
         </Col>
-
-
       </Row>
     </Form>
   );
