@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -75,9 +74,8 @@ const Review = (props) => {
       <Card.Body>
         <Media className="align-item-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55}>
+            <Avatar src={profile_image} height={55} />
               {owner}
-            </Avatar>
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>

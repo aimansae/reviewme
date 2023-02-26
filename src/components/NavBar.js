@@ -118,7 +118,6 @@ const NavBar = () => {
             >
               <i className="fa-sharp fa-solid fa-house"></i>Home
             </NavLink>
-            {currentUser && addReviewIcon}
 
             <NavLink
               className={styles.NavLink}
