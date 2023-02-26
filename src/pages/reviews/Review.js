@@ -1,13 +1,13 @@
-import React from 'react'
-import { Card, Media, OverlayTrigger, Tooltip } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import Avatar from '../../components/Avatar'
-import { useCurrentUser } from '../../context/CurrentUserContext'
-import styles from '../../styles/Review.module.css'
-
+import axios from "axios";
+import React from "react";
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { axiosRes } from "../../api/axiosDefaults";
+import Avatar from "../../components/Avatar";
+import { useCurrentUser } from "../../context/CurrentUserContext";
+import styles from "../../styles/Review.module.css";
 
 const Review = (props) => {
-
   const {
     id,
     owner,
@@ -21,40 +21,79 @@ const Review = (props) => {
     image,
     updated_at,
     reviewPage,
-
-  } = props
+    setReviews,
+  } = props;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { review: id });
+      setReviews((prevReviews) => ({
+        ...prevReviews,
+        results: prevReviews.results.map((review) => {
+          return review.id === id
+            ? {
+              ...review,
+              likes_count: review.likes_count + 1,
+              like_id: data.id,
+            }
+            : review;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      const { data } = await axiosRes.delete(`/likes/${like_id}/`);
+      setReviews((prevReviews) => ({
+        ...prevReviews,
+        results: prevReviews.results.map((review) => {
+          return review.id === id
+            ? {
+              ...review,
+              likes_count: review.likes_count - 1,
+              like_id: data.id,
+            }
+            : review;
+
+        })
+      }))
+
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+
   return (
-  
-      <Card className={styles.Review}>
-        <Card.Body>
-       
-          <Media className="align-item-center justify-content-between">
-            <Link to={`/profiles/${profile_id}`}>
-              <Avatar src={profile_image} height={55}>{owner}</Avatar>
-
-            </Link>
-            <div className='d-flex align-items-center'>
-              <span>{updated_at}</span>
-              {is_owner && reviewPage & "..."}
-
-
-
-            </div>
-
-          </Media>
-        </Card.Body>
-        {product_title && <Card.Title className='text-left m-4 '>{product_title}</Card.Title>}
-        <Link to={`/reviews/${id}`}>
-          <Card.Img src={image} alt={product_title} />
-
-        </Link>
-        <Card.Body>
-         
-          {description && <Card.Text>{description}</Card.Text>}
-          <div className={styles.ReviewBar}>
+    <Card className={styles.Review}>
+      <Card.Body>
+        <Media className="align-item-center justify-content-between">
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={profile_image} height={55}>
+              {owner}
+            </Avatar>
+          </Link>
+          <div className="d-flex align-items-center">
+            <span>{updated_at}</span>
+            {is_owner && reviewPage & "..."}
+          </div>
+        </Media>
+      </Card.Body>
+      {product_title && (
+        <Card.Title className="text-left m-4 ">{product_title}</Card.Title>
+      )}
+      <Link to={`/reviews/${id}`}>
+        <Card.Img className={styles.ImgSize} src={image} alt={product_title} />
+      </Link>
+      <Card.Body>
+        {description && <Card.Text>{description}</Card.Text>}
+        <div className={styles.ReviewBar}>
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -63,11 +102,11 @@ const Review = (props) => {
               <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={() => {}}>
+            <span onClick={handleUnlike}>
               <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
-            <span onClick={() => {}}>
+            <span onClick={handleLike}>
               <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
@@ -81,14 +120,13 @@ const Review = (props) => {
           {likes_count}
 
           <Link to={`/reviews/${id}`}>
-            <i className='far fa-comments' />
+            <i className="far fa-comments" />
           </Link>
           {comments_count}
-          </div>
-        </Card.Body>
+        </div>
+      </Card.Body>
     </Card>
-    
-  )
-}
+  );
+};
 
-export default Review
+export default Review;
