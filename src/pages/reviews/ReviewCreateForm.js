@@ -89,7 +89,7 @@ function ReviewCreateForm() {
         <Form.Control
           type="text"
           name="product_title"
-          value={product_title}
+          value={product_title.toUpperCase()}
           onChange={handleChange}
         />
       </Form.Group>

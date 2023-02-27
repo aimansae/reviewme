@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
+import { DropDown } from "../../components/DropDown";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/Review.module.css";
 
@@ -25,6 +26,24 @@ const Review = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/reviews/${id}/edit`)
+
+  }
+
+  const handleDelete = async() => {
+    try{
+      await axiosRes.delete(`/reviews/${id}/`)
+      history.goBack();
+
+    }catch(err){
+      console.log(err);
+
+    }
+    
+  }
 
   const handleLike = async () => {
     try {
@@ -72,25 +91,29 @@ const Review = (props) => {
   return (
     <Card className={styles.Review}>
       <Card.Body>
-        <Media className="align-item-center justify-content-between">
+        <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} height={55} />
               {owner}
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && reviewPage & "..."}
+            {is_owner && reviewPage && (
+            <DropDown handleEdit={handleEdit} handleDelete={handleDelete} 
+            />
+          )}
           </div>
         </Media>
       </Card.Body>
       {product_title && (
         <Card.Title className="text-left m-4 ">{product_title}</Card.Title>
       )}
+      {description && <Card.Text>{description}</Card.Text>}
       <Link to={`/reviews/${id}`}>
         <Card.Img className={styles.ImgSize} src={image} alt={product_title} />
       </Link>
       <Card.Body>
-        {description && <Card.Text>{description}</Card.Text>}
+      
         <div className={styles.ReviewBar}>
           {is_owner ? (
             <OverlayTrigger
