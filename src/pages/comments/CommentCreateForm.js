@@ -31,7 +31,7 @@ function CommentCreateForm(props) {
         results: [
           {
             ...prevReview.results[0],
-            comments_count: prevReview.results[0].comments_count + 1,
+            comment_count: prevReview.results[0].comment_count + 1,
           },
         ],
       }));
@@ -51,7 +51,7 @@ function CommentCreateForm(props) {
           <Form.Control
             className={styles.Form}
             placeholder="my comment..."
-            as="textarea" 
+            as="textarea"
             value={content}
             onChange={handleChange}
             rows={2}

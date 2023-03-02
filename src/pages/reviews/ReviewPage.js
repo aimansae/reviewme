@@ -11,6 +11,9 @@ import Review from "./Review";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import Comment from "../comments/Comment";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+import { fetchMoreData } from "../../utils/utils";
 
 function ReviewPage() {
   const { id } = useParams();
@@ -23,12 +26,12 @@ function ReviewPage() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const [{ data: review }, {data:comments}] = await Promise.all([
+        const [{ data: review }, { data: comments }] = await Promise.all([
           axiosReq.get(`/reviews/${id}`),
           axiosReq.get(`/comments/?review=${id}`),
         ]);
         setReview({ results: [review] });
-        setComments(comments)
+        setComments(comments);
       } catch (err) {
         console.log(err);
       }
@@ -47,7 +50,7 @@ function ReviewPage() {
             <CommentCreateForm
               profile_id={currentUser.profile_id}
               profileImage={profile_image}
-              post={id}
+              review={id}
               setReview={setReview}
               setComments={setComments}
             />
@@ -55,15 +58,25 @@ function ReviewPage() {
             "Comments"
           ) : null}
           {comments.results.length ? (
-            comments.results.map(comment => {
-              <Comment key={comment.id} {...comment} />
-            })
-          ) : currentUser? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setReview={setReview}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
+          ) : currentUser ? (
             <span>No comments.. Leave a comment</span>
-          ):(
+          ) : (
             <span>No comments yet... Please Log In to view more</span>
-          )
-           }
+          )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">

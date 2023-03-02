@@ -24,7 +24,9 @@ const StarRating = () => {
 
     const handleMouseLeave = () => {
         setHover(undefined)
+        console.log(setHover)
     }
+    
 
     return (
         <div className='d-flex justify-content-center'>
