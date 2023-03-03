@@ -11,6 +11,9 @@ import ReviewsPage from "./pages/reviews/ReviewsPage";
 import { useCurrentUser } from "./context/CurrentUserContext";
 import ReviewEditForm from "./pages/reviews/ReviewEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -24,15 +27,9 @@ function App() {
           <Route
             exact
             path="/"
-            render={() => (
-            <ReviewsPage message="Oops..No results found.." />)}
+            render={() => <ReviewsPage message="Oops..No results found.." />}
           />
-          <Route
-            exact
-            path="/saved"
-            render={() => (
-            <ReviewsPage/>)}
-          />
+          <Route exact path="/saved" render={() => <ReviewsPage />} />
           <Route
             exact
             path="/liked"
@@ -58,7 +55,21 @@ function App() {
           />
           <Route exact path="/reviews/:id" render={() => <ReviewPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-
+          <Route
+            exact
+            path="/profiles/:id/edit/username"
+            render={() => <UsernameForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit/password"
+            render={() => <UserPasswordForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEditForm />}
+          />
           <Route render={() => <p>Page Not found</p>} />
         </Switch>
       </Container>

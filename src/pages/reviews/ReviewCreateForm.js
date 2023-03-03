@@ -18,8 +18,10 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import StarRating from "./StarRating";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function ReviewCreateForm() {
+  useRedirect('loggedOut')
   const [errors, setErrors] = useState({});
 
   {/*rating: "", */ }

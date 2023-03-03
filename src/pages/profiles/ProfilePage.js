@@ -18,6 +18,12 @@ import {
     useSetProfileData,
 } from "../../context/ProfileDataContext";
 import { Button, Image } from "react-bootstrap";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utils/utils";
+import Review from "../reviews/Review"
+import NoResults from "../../assets/no-results.png";
+
+import { ProfileEditDropdown } from "../../components/DropDown";
 
 function ProfilePage() {
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -26,18 +32,22 @@ function ProfilePage() {
     const setProfileData = useSetProfileData();
     const { pageProfile } = useProfileData();
     const [profile] = pageProfile.results;
+    const [profileReviews, setProfileReviews] = useState({ results: [] });
+
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [{ data: pageProfile }] = await Promise.all([
+                const [{ data: pageProfile }, { data: profileReviews }] = await Promise.all([
                     axiosReq.get(`/profiles/${id}/`),
+                    axiosReq.get(`/reviews/?owner__profile=${id}`),
                 ]);
 
                 setProfileData((prevState) => ({
                     ...prevState,
                     pageProfile: { results: [pageProfile] },
                 }));
+                setProfileReviews(profileReviews)
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -48,6 +58,7 @@ function ProfilePage() {
 
     const mainProfile = (
         <>
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
                     <Image
@@ -60,28 +71,48 @@ function ProfilePage() {
                     <h3 className="m-2">{profile?.owner}</h3>
                     <Row className="justify-content-center no-gutters">
                         <Col xs={3} className="my-2">
-                            <div>{profile?.posts_count}</div>
-                            <div>posts</div>
+                            <div>{profile?.reviews_count}</div>
+                            <div>Reviews</div>
                         </Col>
-               
-            </Row>
-            </Col>
 
-            <Col lg={3} className="text-lg-right">
-                <p>Follow button to remove</p>
-            </Col>
-            {profile?.content && (<Col className="p-3">{profile.content}</Col>)}
-        </Row>
-    </>
-  );
+                    </Row>
+                </Col>
+
+                <Col lg={3} className="text-lg-right">
+                    <p> Add other info or remove</p>
+                </Col>
+                {profile?.content && (<Col className="p-3">{profile.content}</Col>)}
+            </Row>
+        </>
+    );
 
     const mainProfileReviews = (
         <>
             <hr />
-            <p className="text-center">Profile owner's reviews</p>
+            <p className="text-center">{profile?.owner}'s posts</p>
+
             <hr />
+            {profileReviews.results.length ? (
+                <InfiniteScroll
+                    children={profileReviews.results.map((review) => (
+                        <Review key={review.id} {...review} setReviews={setProfileReviews} />
+
+                    ))
+                    }
+                    dataLength={profileReviews.results.length}
+                    loader={<Asset spinner />}
+                    hasMore={!!profileReviews.next}
+                    next={() => fetchMoreData(profileReviews, setProfileReviews)}
+                />
+            ) : (
+                <Asset
+                    src={NoResults}
+                    message={`No results found, ${profile?.owner} hasn't posted yet.`}
+                />
+            )}
         </>
     );
+
 
     return (
         <Row>
