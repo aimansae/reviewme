@@ -44,7 +44,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/saved"
       >
-        <i className="fa-solid fa-stream"></i>Saved
+        <i className="fa-solid fa-tag"></i>Saved
       </NavLink>
 
       <NavLink

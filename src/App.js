@@ -29,13 +29,24 @@ function App() {
             path="/"
             render={() => <ReviewsPage message="Oops..No results found.." />}
           />
-          <Route exact path="/saved" render={() => <ReviewsPage />} />
+          <Route
+            exact
+            path="/saved"
+            render={() => (
+              <ReviewsPage
+                message="No results found. Try again or save a review"
+                filter={`saved__owner__profile=${profile_id}&ordering=-saved__created_at&`}
+
+              />
+            )}
+          />
+
           <Route
             exact
             path="/liked"
             render={() => (
               <ReviewsPage
-                message="No results found. Try again or like a post"
+                message="No results found. Try again or like a review"
                 filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
               />
             )}

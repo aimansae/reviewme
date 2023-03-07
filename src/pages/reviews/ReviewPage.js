@@ -32,6 +32,7 @@ function ReviewPage() {
         ]);
         setReview({ results: [review] });
         setComments(comments);
+        
       } catch (err) {
         console.log(err);
       }
@@ -43,7 +44,7 @@ function ReviewPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
+        <p>Popular Reviews:</p>
         <Review {...review.results[0]} setReviews={setReview} reviewPage />
         <Container className={appStyles.Content}>
           {currentUser ? (

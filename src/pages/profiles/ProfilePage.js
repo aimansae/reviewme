@@ -33,7 +33,7 @@ function ProfilePage() {
     const { pageProfile } = useProfileData();
     const [profile] = pageProfile.results;
     const [profileReviews, setProfileReviews] = useState({ results: [] });
-
+    const is_owner = currentUser?.username === profile?.owner;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -59,6 +59,7 @@ function ProfilePage() {
     const mainProfile = (
         <>
         {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+        console.log(is_owner);
             <Row noGutters className="px-3 text-center">
                 <Col lg={3} className="text-lg-left">
                     <Image

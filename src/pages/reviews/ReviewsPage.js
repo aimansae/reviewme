@@ -14,7 +14,6 @@ import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-import Profile from "../profiles/Profile";
 
 function ReviewsPage({ message, filter = "" }) {
   const [reviews, setReviews] = useState({ results: [] });
@@ -73,11 +72,11 @@ function ReviewsPage({ message, filter = "" }) {
                 dataLength={reviews.results.length}
                 loader={<Asset spinner />}
                 hasMore={!!reviews.next}
-                next={() => fetchMoreData(reviews,setReviews)}
+                next={() => fetchMoreData(reviews, setReviews)}
               />
             ) : (
               <Container className={appStyles.Content}>
-                <Asset src={NoResults} />
+                <Asset src={NoResults} message={message} />
               </Container>
             )}
           </>
@@ -87,8 +86,6 @@ function ReviewsPage({ message, filter = "" }) {
           </Container>
         )}
       </Col>
-      
-      
     </Row>
   );
 }
