@@ -10,7 +10,10 @@
   h5 {
     margin: 0 0;
   }
-  
+  .Span{
+    color: #7b7b84;
+    font-style: italic;
+  }
   .Heart {
     color: #f85032;
   }
@@ -24,5 +27,22 @@
   }
   
   .ImgSize {
-    width: 50%;
+    width: 40% !important;
+    
+  }
+
+  .Title{
+    font-weight: bolder;
+  }
+
+  .SaveTag {
+    color: #6fe327;
+  }
+
+  .SaveTagOutline:hover {
+    color: #268b12;
+  }
+  
+  .SaveTag:hover {
+    color: #f85032;
   }

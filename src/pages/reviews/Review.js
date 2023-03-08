@@ -7,6 +7,10 @@ import { DropDown } from "../../components/DropDown";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/Review.module.css";
 
+//import Rating from 'react-rating-stars-component';
+
+
+
 const Review = (props) => {
   const {
     id,
@@ -23,7 +27,9 @@ const Review = (props) => {
     updated_at,
     reviewPage,
     setReviews,
+
   } = props;
+  //to add rating,
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -50,10 +56,10 @@ const Review = (props) => {
         results: prevReviews.results.map((review) => {
           return review.id === id
             ? {
-                ...review,
-                likes_count: review.likes_count + 1,
-                like_id: data.id,
-              }
+              ...review,
+              likes_count: review.likes_count + 1,
+              like_id: data.id,
+            }
             : review;
         }),
       }));
@@ -70,10 +76,10 @@ const Review = (props) => {
         results: prevReviews.results.map((review) => {
           return review.id === id
             ? {
-                ...review,
-                likes_count: review.likes_count - 1,
-                like_id: data.id,
-              }
+              ...review,
+              likes_count: review.likes_count - 1,
+              like_id: data.id,
+            }
             : review;
         }),
       }));
@@ -103,10 +109,10 @@ const Review = (props) => {
       setReviews((prevReviews) => ({
         ...prevReviews,
         results: prevReviews.results.map((review) => {
-          return review.id === id 
-          ? { 
-              ...review, 
-              save_id: data.id, 
+          return review.id === id
+            ? {
+              ...review,
+              save_id: data.id,
             } : review;
         }),
       }));
@@ -124,20 +130,32 @@ const Review = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
+            <span className={styles.Span}>{updated_at}</span>
             {is_owner && reviewPage && (
               <DropDown handleEdit={handleEdit} handleDelete={handleDelete} />
             )}
           </div>
         </Media>
       </Card.Body>
-      {product_title && (
-        <Card.Title className="text-left m-4 ">{product_title}</Card.Title>
-      )}
-      {description && <Card.Text>{description}</Card.Text>}
+
+      {/* //to add rating,{rating && (
+        <Card.Title className="text-left m-4 ">Rating:{rating}</Card.Title>
+            )}}*/}
+
+      <Card.Body>
+   
+        {product_title && (
+          <Card.Title className={`text-center ${styles.Title} `}>{product_title}</Card.Title>
+        )}
+        {description && <Card.Text>{description}</Card.Text>}
+      </Card.Body>
+
       <Link to={`/reviews/${id}`}>
-        <Card.Img className={styles.ImgSize} src={image} alt={product_title} />
+        <Card.Img className={styles.ImgSize} src={image} alt={product_title} width={50} />
+
       </Link>
+
+
       <Card.Body>
         <div className={styles.ReviewBar}>
           {is_owner ? (
@@ -164,7 +182,14 @@ const Review = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
-          {/*saved*/}
+
+          <Link to={`/reviews/${id}`}>
+            <i className="far fa-comments" />
+          </Link>
+          {comment_count}
+      
+
+          {/*save functionality*/}
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -174,11 +199,11 @@ const Review = (props) => {
             </OverlayTrigger>
           ) : save_id ? (
             <span onClick={handleUnsave}>
-              <i className={`fa-solid fa-tag ${styles.Heart}`} />
+              <i className={`fa-solid fa-tag ${styles.SaveTag}`} />
             </span>
           ) : currentUser ? (
             <span onClick={handleSave}>
-              <i className={`fa-solid fa-tag ${styles.HeartOutline}`} />
+              <i className={`fa-solid fa-tag ${styles.SaveTagOutline}`} />
             </span>
           ) : (
             <OverlayTrigger
@@ -189,12 +214,9 @@ const Review = (props) => {
             </OverlayTrigger>
           )}
           {/*end saved*/}
+          </div>
 
-          <Link to={`/reviews/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comment_count}
-        </div>
+         
       </Card.Body>
     </Card>
   );

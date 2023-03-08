@@ -14,6 +14,7 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import Contact from "./pages/contact/Contact";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -53,7 +54,7 @@ function App() {
           />
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
-          <Route exact path="/contact" render={() => <h1>Contact</h1>} />
+          <Route exact path="/contact" render={() => <Contact />} />
           <Route
             exact
             path="/reviews/write"

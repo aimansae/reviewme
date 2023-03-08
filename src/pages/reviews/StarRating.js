@@ -3,49 +3,58 @@ import { FaStar } from 'react-icons/fa'
 import styles from '../../styles/Star.module.css'
 
 
+
+
 const StarRating = () => {
 
-    const colors = {
-        yellow: 'yellow',
-        grey: 'grey',
-    }
 
-    const stars = Array(5).fill(0)
-    const [rating, setRating] = useState(0)
-    const [hover, setHover] = useState(undefined)
+   const colors = {
+       yellow: 'yellow',
+       grey: 'grey',
+   }
 
-    const handleClick = value => {
-        setRating(value)
-    }
 
-    const handleMouseover = newHoverValue => {
-        setHover(newHoverValue)
-    }
+   const stars = Array(5).fill(0)
+   const [rating, setRating] = useState(0)
+   const [hover, setHover] = useState(undefined)
 
-    const handleMouseLeave = () => {
-        setHover(undefined)
-        console.log(setHover)
-    }
-    
 
-    return (
-        <div className='d-flex justify-content-center'>
-            <div>Review
-              
-                {stars.map((star, index) => {
-                    return (
-                        <FaStar
-                            className={styles.Star}
-                            key={index}
-                            color={(hover || rating) > index ? colors.yellow : colors.grey}
-                            onClick={() => handleClick(index + 1)}
-                            onMouseOver={() => handleMouseover(index + 1)}
-                            onMouseLeave={handleMouseLeave} />
-                    )
-                })}
-            </div>
-        </div>
-    )
+   const handleClick = value => {
+       setRating(value)
+   }
+
+
+   const handleMouseover = newHoverValue => {
+       setHover(newHoverValue)
+   }
+
+
+   const handleMouseLeave = () => {
+       setHover(undefined)
+       console.log(setHover)
+   }
+  
+
+
+   return (
+       <div className='d-flex justify-content-center'>
+           <div>Review
+            
+               {stars.map((star, index) => {
+                   return (
+                       <FaStar
+                           className={styles.Star}
+                           key={index}
+                           color={(hover || rating) > index ? colors.yellow : colors.grey}
+                           onClick={() => handleClick(index + 1)}
+                           onMouseOver={() => handleMouseover(index + 1)}
+                           onMouseLeave={handleMouseLeave} />
+                   )
+               })}
+           </div>
+       </div>
+   )
 }
+
 
 export default StarRating
