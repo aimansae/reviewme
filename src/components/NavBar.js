@@ -38,7 +38,6 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
-    
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -57,6 +56,13 @@ const NavBar = () => {
 
       <NavLink className={styles.NavLink} to="/" onClick={handleLogOut}>
         <i className="fa-solid fa-right-from-bracket"></i>Logout
+      </NavLink>
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/contact"
+      >
+        <i className="fa-sharp fa-solid fa-file-signature"></i>Contact
       </NavLink>
 
       <NavLink
@@ -90,12 +96,7 @@ const NavBar = () => {
 
   return (
     //to change color bg= and fixed="top"
-    <Navbar 
-    expanded={expanded} 
-    className={styles.NavBar} 
-    expand="md"
-    >
-
+    <Navbar expanded={expanded} className={styles.NavBar} expand="md">
       <Container>
         <NavLink to="/">
           <Navbar.Brand>
@@ -103,7 +104,7 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
         {currentUser && addReviewIcon}
-        
+
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
@@ -118,14 +119,6 @@ const NavBar = () => {
               to="/"
             >
               <i className="fa-sharp fa-solid fa-house"></i>Home
-            </NavLink>
-
-            <NavLink
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/contact"
-            >
-              <i className="fa-sharp fa-solid fa-file-signature"></i>Contact
             </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}

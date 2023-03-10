@@ -1,0 +1,33 @@
+.SuccessMessage {
+  text-align: center;
+}
+
+.ButtonPosition {
+  text-align-last: end;
+}
+
+
+.Formstyle:hover {
+  cursor: pointer;
+}
+
+.AboutCol {
+  height: 375px;
+  background-color: rgb(170, 239, 161);
+}
+
+.AboutText {
+  justify-content: center;
+  font-style: italic;
+  color: #555555;
+  
+}
+
+.StarIcon{
+  color:rgb(148, 221, 39)
+}
+
+.ReviewLink{
+  color:rgb(148, 221, 39)
+  
+}
