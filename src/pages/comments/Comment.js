@@ -7,7 +7,7 @@ import { DropDown } from "../../components/DropDown";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/Comment.module.css";
 import CommentEditForm from "./CommentEditForm";
-
+import ModalAlert from "../../components/ModalAlert";
 
 const Comment = (props) => {
   const {
@@ -41,7 +41,18 @@ const Comment = (props) => {
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
     } catch (err) {}
+    setShow(false);
+
   };
+
+  // form modal confirmation
+  const showConfirmDeleteModal = (event) => {
+    setShow(true);
+  };
+
+  const [show, setShow] = useState(false);
+
+
   return (
     <>
       <hr />
@@ -68,10 +79,18 @@ const Comment = (props) => {
         {is_owner && !showEditForm && (
           <DropDown
             handleEdit={() => setShowEditForm(true)}
-            handleDelete={handleDelete}
+            handleDelete={showConfirmDeleteModal}
           />
         )}
       </Media>
+      <ModalAlert
+      show={show}
+      handleClose={() => setShow(false)}
+      onConfirm={handleDelete}
+      title="ReviewME"
+      message={"Are you sure you want to delete this comment?"}
+    />
+      
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -6,6 +6,7 @@ import Avatar from "../../components/Avatar";
 import { DropDown } from "../../components/DropDown";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/Review.module.css";
+import ModalAlert from "../../components/ModalAlert";
 
 //import Rating from 'react-rating-stars-component';
 
@@ -46,6 +47,7 @@ const Review = (props) => {
     } catch (err) {
       console.log(err);
     }
+    setShow(false);
   };
 
   const handleLike = async () => {
@@ -120,8 +122,16 @@ const Review = (props) => {
       //console.log(err);
     }
   };
+// form modal confirmation
+  const showConfirmDeleteModal = (event) => {
+    setShow(true);
+  };
+
+  const [show, setShow] = useState(false);
+
 
   return (
+    <>
     <Card className={styles.Review}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
@@ -132,7 +142,7 @@ const Review = (props) => {
           <div className="d-flex align-items-center">
             <span className={styles.Span}>{updated_at}</span>
             {is_owner && reviewPage && (
-              <DropDown handleEdit={handleEdit} handleDelete={handleDelete} />
+              <DropDown handleEdit={handleEdit} handleDelete={showConfirmDeleteModal} />
             )}
           </div>
         </Media>
@@ -219,6 +229,17 @@ const Review = (props) => {
          
       </Card.Body>
     </Card>
+
+      <ModalAlert
+      show={show}
+      handleClose={() => setShow(false)}
+      onConfirm={handleDelete}
+      title="ReviewME"
+      message={"Are you sure you want to delete this review?"}
+    />
+ </>
+
+
   );
 };
 
