@@ -46,8 +46,8 @@ function ReviewsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2">
-        <h4 className="text-center m-4"> All product Reviewes</h4>
+      <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
+
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form 
           className={styles.SearchBar}

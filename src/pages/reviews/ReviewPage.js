@@ -44,8 +44,11 @@ function ReviewPage() {
   return (
     <Row className="h-100">
         <Col md={6} xl={8} className="p-0 p-md-2 offset-2">
-        <h5 className="text-center my-2">Place your comment below...</h5>
+
         <Review {...review.results[0]} setReviews={setReview} reviewPage />
+        </Col>
+        <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
+
         <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
