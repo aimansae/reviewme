@@ -9,7 +9,7 @@ import { useHistory } from "react-router";
 // Dropdown needs access to the DOM node in order to position the Menu
 const EditMenu = React.forwardRef(({ onClick }, ref) => (
   <i
-    className="fa-solid fa-bars"
+    className={` ${styles.IconBar} fa-solid fa-bars `}
     ref={ref}
     onClick={(e) => {
       e.preventDefault();
@@ -56,20 +56,20 @@ export function ProfileEditDropdown({ id }) {
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="edit-profile"
         >
-          <i className="fas fa-edit" /> edit profile
+          <i className={`${styles.IconColor} fas fa-edit`} /> edit profile
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="edit-username"
         >
-          <i className="far fa-id-card" />
+          <i className={`${styles.IconIdCard} far fa-id-card `}/>
           change username
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/password`)}
           aria-label="edit-password"
         >
-          <i className="fas fa-key" />
+          <i className={`${styles.IconKey} fas fa-key`} />
           change password
         </Dropdown.Item>
       </Dropdown.Menu>

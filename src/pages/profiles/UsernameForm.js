@@ -58,7 +58,7 @@ const UsernameForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit} className="my-2">
             <Form.Group>
-              <Form.Label>Change username</Form.Label>
+              <Form.Label>Change your username</Form.Label>
               <Form.Control
                 placeholder="username"
                 type="text"
@@ -72,13 +72,13 @@ const UsernameForm = () => {
               </Alert>
             ))}
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button} ${btnStyles.Red}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button} ${btnStyles.Green}`}
               type="submit"
             >
               save

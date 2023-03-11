@@ -13,12 +13,27 @@
 .Show {
   display: flex !important;
 }
+.IconBar{
+  color: rgb(15, 228, 4) !important;
+}
+.IconBar:hover{
+  color: rgb(27, 139, 238) !important;
+}
+  
 
 .IconColor{
   color: rgb(12, 210, 42) !important;
-  size: 20px
 }
 
 .IconColorRed{
-  color:red !important
+  color:red !important;
+}
+
+.IconIdCard{
+
+ color: rgb(27, 139, 238) !important;
+}
+
+.IconKey{
+  color:rgba(222, 156, 34, 0.842) !important;
 }

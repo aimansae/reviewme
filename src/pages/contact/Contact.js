@@ -162,16 +162,14 @@ function Contact() {
             >
               <div className={`text-center ${style.ButtonPosition}`}>
                 <Button
-                  variant="success"
-                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  className={`${btnStyles.Button} ${btnStyles.Green}`}
                   type="submit"
                 >
                   send
                 </Button>
 
                 <Button
-                  variant="danger"
-                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  className={`${btnStyles.Button} ${btnStyles.Red}`}
                   onClick={() => history.goBack()}
                 >
                   cancel

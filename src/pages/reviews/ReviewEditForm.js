@@ -13,7 +13,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import StarRating from "./StarRating";
+import iconStyle from "../../styles/DropDown.module.css"
 
 function ReviewEditForm() {
   const [errors, setErrors] = useState({});
@@ -42,10 +42,10 @@ function ReviewEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/reviews/${id}/`);
-        const { product_title, description, image, is_owner } = data;
+        const { product_title, description, image, is_owner,price } = data;
 
         is_owner
-          ? setPostData({ product_title, description, image })
+          ? setPostData({ product_title, description, image, price })
           : history.push("/");
       } catch (err) {
         console.log(err);
@@ -131,10 +131,10 @@ function ReviewEditForm() {
       ))}
 
       <Form.Group as={Row}>
-        <Form.Label column sm="2">
+        <Form.Label column sm="3">
           Price €:
         </Form.Label>
-        <Col sm={2}>
+        <Col sm={3}>
           <Form.Control
             type="number"
             name="price"
@@ -167,10 +167,10 @@ function ReviewEditForm() {
               </figure>
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button}${btnStyles.Green} btn `}
+                  className={`${btnStyles.Button}${btnStyles.Blue} btn `}
                   htmlFor="image-upload"
                 >
-                  Change Image
+                  <i className={`${iconStyle.IconColor} fa-solid fa-pen-to-square`} />Change Image
                 </Form.Label>
               </div>
 
@@ -188,20 +188,19 @@ function ReviewEditForm() {
             ))}
 
             <div className="text-center">
-              <Button
-                variant="success"
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                type="submit"
-              >
-                Update
-              </Button>
+           
 
               <Button
-                variant="success"
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Red}`}
                 onClick={() => history.goBack()}
               >
                 Cancel
+              </Button>
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Green}`}
+                type="submit"
+              >
+                Update
               </Button>
               {errors?.non_field_errors?.map((message, idx) => (
                 <Alert key={idx} variant="warning" className="mt-3">

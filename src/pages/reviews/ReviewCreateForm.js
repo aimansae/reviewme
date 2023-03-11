@@ -87,7 +87,7 @@ function ReviewCreateForm() {
 
 
       <Form.Group>
-        <Form.Label>Product Title</Form.Label>
+        <Form.Label>Product Title:</Form.Label>
         <Form.Control
           type="text"
           name="product_title"
@@ -102,7 +102,7 @@ function ReviewCreateForm() {
       ))}
 
       <Form.Group controlId="description">
-        <Form.Label>Description</Form.Label>
+        <Form.Label>Description:</Form.Label>
         <Form.Control
           as="textarea"
           rows={4}
@@ -119,10 +119,10 @@ function ReviewCreateForm() {
       ))}
 
       <Form.Group as={Row}>
-        <Form.Label column sm="2">
+        <Form.Label column sm="3">
           Price €:
         </Form.Label>
-        <Col sm={2}>
+        <Col sm={3}>
           <Form.Control
             type="number"
             name="price"
@@ -192,8 +192,7 @@ function ReviewCreateForm() {
 
             <div className="text-center">
               <Button
-                variant="success"
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Red}`}
                 onClick={() => history.goBack()}
 
               >
@@ -201,8 +200,7 @@ function ReviewCreateForm() {
               </Button>
 
               <Button
-                variant="success"
-                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                className={`${btnStyles.Button} ${btnStyles.Green}`}
                 type="submit"
               >
                 create

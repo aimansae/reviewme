@@ -13,36 +13,39 @@
   .Span{
     color: #7b7b84;
     font-style: italic;
+    font-weight: 600;
   }
   .Heart {
     color: #f85032;
   }
   
-  .Heart:hover {
-    color: #2142b2;
-  }
+  .Heart:hover{
+    color: #5a1c11;
   
-  .HeartOutline:hover {
-    color: #f85032;
   }
+ 
   
   .ImgSize {
     width: 40% !important;
     
-  }
+
+  transition: transform 0.5s, filter 1.5s ease-in-out;
+}
+
+.ImgSize:hover {
+  transform: scale(1.1);
+}
+
 
   .Title{
     font-weight: bolder;
   }
 
   .SaveTag {
-    color: #6fe327;
+    color: #459a10;
   }
 
-  .SaveTagOutline:hover {
-    color: #268b12;
-  }
   
   .SaveTag:hover {
-    color: #f85032;
+    color: rgb(40, 8, 165);
   }

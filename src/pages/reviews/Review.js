@@ -24,6 +24,7 @@ const Review = (props) => {
     save_id,
     product_title,
     description,
+    price,
     image,
     updated_at,
     reviewPage,
@@ -136,8 +137,8 @@ const Review = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={55} />
-            {owner}
+            <Avatar src={profile_image} height={45} />
+               {owner}
           </Link>
           <div className="d-flex align-items-center">
             <span className={styles.Span}>{updated_at}</span>
@@ -157,8 +158,15 @@ const Review = (props) => {
         {product_title && (
           <Card.Title className={`text-center ${styles.Title} `}>{product_title}</Card.Title>
         )}
-        {description && <Card.Text>{description}</Card.Text>}
-      </Card.Body>
+         </Card.Body>
+         <Card.Body>
+        {description && <Card.Text className="text-left">{description}</Card.Text>}
+        </Card.Body>
+        <Card.Body>
+        {price && <Card.Text className="text-left blockquote"> Price paid €:
+       {price}
+        </Card.Text>}
+        </Card.Body>
 
       <Link to={`/reviews/${id}`}>
         <Card.Img className={styles.ImgSize} src={image} alt={product_title} width={50} />
@@ -173,22 +181,22 @@ const Review = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <i className="far fa-heart" />
+              <i className={`fa-solid fa-heart ${styles.Heart}`} />
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
-              <i className={`fas fa-heart ${styles.Heart}`} />
+              <i className={`fa-solid fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
             <span onClick={handleLike}>
-              <i className={`far fa-heart ${styles.HeartOutline}`} />
+              <i className={`fa-solid fa-heart ${styles.HeartOutLine}`} />
             </span>
           ) : (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
-              <i className="far fa-heart" />
+              <i className="fa-solid fa-heart" />
             </OverlayTrigger>
           )}
           {likes_count}

@@ -27,10 +27,10 @@ const ProfileEditForm = () => {
 
   const [profileData, setProfileData] = useState({
     name: "",
-    content: "",
+    description: "",
     image: "",
   });
-  const { name, content, image } = profileData;
+  const { name, description, image } = profileData;
 
   const [errors, setErrors] = useState({});
 
@@ -39,8 +39,8 @@ const ProfileEditForm = () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { name, content, image } = data;
-          setProfileData({ name, content, image });
+          const { name, description, image } = data;
+          setProfileData({ name, description, image });
         } catch (err) {
           console.log(err);
           history.push("/");
@@ -64,7 +64,7 @@ const ProfileEditForm = () => {
     event.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("content", content);
+    formData.append("description", description);
 
     if (imageFile?.current?.files[0]) {
       formData.append("image", imageFile?.current?.files[0]);
@@ -86,28 +86,28 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label className="text-left">Your Bio</Form.Label>
         <Form.Control
           as="textarea"
-          value={content}
+          value={description}
           onChange={handleChange}
-          name="content"
+          name="description"
           rows={7}
         />
       </Form.Group>
 
-      {errors?.content?.map((message, idx) => (
+      {errors?.description?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Red}`}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Green}`} type="submit">
         save
       </Button>
     </>
@@ -134,7 +134,7 @@ const ProfileEditForm = () => {
                   className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
                   htmlFor="image-upload"
                 >
-                  Change the image
+                  Change Profile Image
                 </Form.Label>
               </div>
               <Form.File
