@@ -8,7 +8,6 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
-
 import Upload from "../../assets/upload.png";
 
 import Asset from "../../components/Asset";
@@ -21,18 +20,18 @@ import StarRating from "./StarRating";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function ReviewCreateForm() {
-  useRedirect('loggedOut')
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
-  {/*rating: "", */ }
-
+  {
+    /*rating: "", */
+  }
 
   const [postData, setPostData] = useState({
     product_title: "",
     description: "",
     image: "",
     price: "",
-
   });
 
   {
@@ -69,12 +68,11 @@ function ReviewCreateForm() {
     formData.append("image", imageInput.current.files[0]);
     formData.append("price", price);
 
-
     try {
       const { data } = await axiosReq.post("/reviews/", formData);
       history.push(`/reviews/${data.id}`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -84,7 +82,6 @@ function ReviewCreateForm() {
   const textFields = (
     <div className={styles.TextLeft}>
       {/* RATING */}
-
 
       <Form.Group>
         <Form.Label>Product Title:</Form.Label>
@@ -127,11 +124,8 @@ function ReviewCreateForm() {
             type="number"
             name="price"
             value={price}
-
             onChange={handleChange}
-
           />
-
         </Col>
       </Form.Group>
       {errors?.price?.map((message, idx) => (
@@ -139,17 +133,16 @@ function ReviewCreateForm() {
           {message}
         </Alert>
       ))}
-
     </div>
   );
 
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col md={6} xl={8} className="p-0 p-md-2 offset-2">
+      <Col md={12} xl={8} className="offset-xl-2" >
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
-        <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
+        <Col md={12} xl={8} className="offset-xl-2" >
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
@@ -194,7 +187,6 @@ function ReviewCreateForm() {
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Red}`}
                 onClick={() => history.goBack()}
-
               >
                 cancel
               </Button>

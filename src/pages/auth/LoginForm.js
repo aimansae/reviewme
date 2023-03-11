@@ -15,22 +15,20 @@ import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useSetCurrentUser } from "../../context/CurrentUserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function LoginForm() {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect('loggedIn')
+  useRedirect("loggedIn");
 
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
 
-  //destructuring signUpData
   const { username, password } = loginData;
 
   const [errors, setErrors] = useState({});
-
-  // onchange handler
 
   const handleChange = (event) => {
     setLoginData({
@@ -39,16 +37,15 @@ function LoginForm() {
     });
   };
 
-  // form submit handler
   const history = useHistory();
 
   const handleSubmit = async (event) => {
-    // to avoid that the page refreshes
     event.preventDefault();
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", loginData);
       setCurrentUser(data.user);
-      history.goBack()
+      setTokenTimestamp(data);
+      history.goBack();
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -59,7 +56,7 @@ function LoginForm() {
       <Col className="my-auto py-2 p-md-2 offset-2" md={8}>
         <Container className={appStyles.Content}>
           <h1 className={styles.Header}>login</h1>
-          {/* Add your form here */}
+
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>

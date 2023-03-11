@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Card from "react-bootstrap/Card"
+import Media from "react-bootstrap/Media"
+import OverlayTrigger from "react-bootstrap/OverlayTrigger"
+import Tooltip from "react-bootstrap/Tooltip"
+
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
@@ -46,7 +50,7 @@ const Review = (props) => {
       await axiosRes.delete(`/reviews/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
     setShow(false);
   };
@@ -67,7 +71,7 @@ const Review = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -87,10 +91,11 @@ const Review = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
-  // adding save functionality
+
+  // save functionality
 
   const handleSave = async () => {
     try {
@@ -102,7 +107,6 @@ const Review = (props) => {
         }),
       }));
     } catch (err) {
-      //console.log(err);
     }
   };
 
@@ -120,10 +124,9 @@ const Review = (props) => {
         }),
       }));
     } catch (err) {
-      //console.log(err);
     }
   };
-// form modal confirmation
+// for modal confirmation
   const showConfirmDeleteModal = (event) => {
     setShow(true);
   };
@@ -176,6 +179,7 @@ const Review = (props) => {
 
       <Card.Body>
         <div className={styles.ReviewBar}>
+            {/*like functionality*/}
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -231,7 +235,6 @@ const Review = (props) => {
               <i className="fa-solid fa-tag" />
             </OverlayTrigger>
           )}
-          {/*end saved*/}
           </div>
 
          

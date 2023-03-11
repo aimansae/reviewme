@@ -34,7 +34,7 @@ function ReviewPage() {
         setComments(comments);
         
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
 
@@ -43,11 +43,11 @@ function ReviewPage() {
 
   return (
     <Row className="h-100">
-        <Col md={6} xl={8} className="p-0 p-md-2 offset-2">
+        <Col md={12} xl={8} className="offset-xl-2" >
 
         <Review {...review.results[0]} setReviews={setReview} reviewPage />
         </Col>
-        <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
+        <Col md={12} xl={8} className="offset-xl-2" >
 
         <Container className={appStyles.Content}>
           {currentUser ? (

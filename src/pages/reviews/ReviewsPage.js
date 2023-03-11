@@ -14,10 +14,13 @@ import NoResults from "../../assets/no-results.png";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import { useCurrentUser } from "../../context/CurrentUserContext";
 
 function ReviewsPage({ message, filter = "" }) {
   const [reviews, setReviews] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const currentUser = useCurrentUser()
+
   const { pathname } = useLocation();
 
   const [search, setSearch] = useState("");
@@ -31,7 +34,7 @@ function ReviewsPage({ message, filter = "" }) {
         setReviews(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     setHasLoaded(false);
@@ -42,14 +45,13 @@ function ReviewsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, search, pathname]);
+  }, [filter, search, pathname, currentUser]);
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
-
+      <Col md={12} xl={8} className="offset-xl-2" >
         <i className={`fas fa-search ${styles.SearchIcon}`} />
-        <Form 
+        <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >

@@ -4,6 +4,8 @@
   }
   
   .Date {
-    font-weight: lighter;
-    color: #c1c1c5;
+    color: #7b7b84;
+    font-style: italic;
+    font-weight: 600;
+    margin-left:5px ;
   }

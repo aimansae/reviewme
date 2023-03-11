@@ -25,16 +25,16 @@ function CommentEditForm(props) {
         results: prevComments.results.map((comment) => {
           return comment.id === id
             ? {
-              ...comment,
-              content: formContent.trim(),
-              updated_at: "now",
-            }
+                ...comment,
+                content: formContent.trim(),
+                updated_at: "now",
+              }
             : comment;
         }),
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -51,11 +51,9 @@ function CommentEditForm(props) {
       </Form.Group>
       <div className="text-right">
         <button
-        
           className={`${btnStyles.Button} ${btnStyles.Red}`}
           onClick={() => setShowEditForm(false)}
           type="button"
-
         >
           cancel
         </button>

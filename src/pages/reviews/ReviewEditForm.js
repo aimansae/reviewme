@@ -13,7 +13,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import iconStyle from "../../styles/DropDown.module.css"
+import iconStyle from "../../styles/DropDown.module.css";
 
 function ReviewEditForm() {
   const [errors, setErrors] = useState({});
@@ -42,13 +42,13 @@ function ReviewEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/reviews/${id}/`);
-        const { product_title, description, image, is_owner,price } = data;
+        const { product_title, description, image, is_owner, price } = data;
 
         is_owner
           ? setPostData({ product_title, description, image, price })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     handleMount();
@@ -87,7 +87,7 @@ function ReviewEditForm() {
       await axiosReq.put(`/reviews/${id}/`, formData);
       history.push(`/reviews/${id}`);
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -131,10 +131,10 @@ function ReviewEditForm() {
       ))}
 
       <Form.Group as={Row}>
-        <Form.Label column sm="3">
+        <Form.Label column xs="3">
           Price €:
         </Form.Label>
-        <Col sm={3}>
+        <Col xs={4}>
           <Form.Control
             type="number"
             name="price"
@@ -154,10 +154,10 @@ function ReviewEditForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col md={6} xl={8} className="p-0 p-md-2 offset-2">
+      <Col md={12} xl={8} className="offset-xl-2" >
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
-        <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
+        <Col md={12} xl={8} className="offset-xl-2" >
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
@@ -170,7 +170,10 @@ function ReviewEditForm() {
                   className={`${btnStyles.Button}${btnStyles.Blue} btn `}
                   htmlFor="image-upload"
                 >
-                  <i className={`${iconStyle.IconColor} fa-solid fa-pen-to-square`} />Change Image
+                  <i
+                    className={`${iconStyle.IconColor} fa-solid fa-pen-to-square`}
+                  />
+                  Change Image
                 </Form.Label>
               </div>
 
@@ -188,8 +191,6 @@ function ReviewEditForm() {
             ))}
 
             <div className="text-center">
-           
-
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Red}`}
                 onClick={() => history.goBack()}

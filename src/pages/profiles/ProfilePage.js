@@ -8,7 +8,6 @@ import Asset from "../../components/Asset";
 
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
 
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import { useParams } from "react-router";
@@ -17,7 +16,7 @@ import {
   useProfileData,
   useSetProfileData,
 } from "../../context/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import Review from "../reviews/Review";
@@ -51,7 +50,7 @@ function ProfilePage() {
         setProfileReviews(profileReviews);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     fetchData();

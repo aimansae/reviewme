@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -20,7 +20,7 @@ const Comment = (props) => {
     setReview,
     setComments,
   } = props;
-  
+
   const [showEditForm, setShowEditForm] = useState(false);
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -42,7 +42,6 @@ const Comment = (props) => {
       }));
     } catch (err) {}
     setShow(false);
-
   };
 
   // form modal confirmation
@@ -52,7 +51,6 @@ const Comment = (props) => {
 
   const [show, setShow] = useState(false);
 
-
   return (
     <>
       <hr />
@@ -60,9 +58,9 @@ const Comment = (props) => {
         <Link to={`/profiles/${profile_id}`}>
           <Avatar src={profile_image} />
         </Link>
-        <Media.Body className="align-self-center ml-2">
+        <Media.Body className="align-self-center">
           <span className={styles.Owner}>{owner}</span>
-          <span className={styles.Date}>{updated_at}</span>
+          <span className= {styles.Date}>{updated_at}</span>
           {showEditForm ? (
             <CommentEditForm
               id={id}
@@ -73,7 +71,7 @@ const Comment = (props) => {
               setShowEditForm={setShowEditForm}
             />
           ) : (
-            <p>{content}</p>
+            <p className="mt-2">{content}</p>
           )}
         </Media.Body>
         {is_owner && !showEditForm && (
@@ -84,14 +82,13 @@ const Comment = (props) => {
         )}
       </Media>
       <ModalAlert
-      show={show}
-      handleClose={() => setShow(false)}
-      onConfirm={handleDelete}
-      title="ReviewME"
-      message={"Are you sure you want to delete this comment?"}
-    />
-      
+        show={show}
+        handleClose={() => setShow(false)}
+        onConfirm={handleDelete}
+        title="ReviewME"
+        message={"Are you sure you want to delete this comment?"}
+      />
     </>
   );
-}
+};
 export default Comment;

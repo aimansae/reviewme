@@ -31,7 +31,7 @@ const StarRating = () => {
 
    const handleMouseLeave = () => {
        setHover(undefined)
-       console.log(setHover)
+       //console.log(setHover)
    }
   
 

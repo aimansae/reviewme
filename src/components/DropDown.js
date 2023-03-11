@@ -1,9 +1,8 @@
- import React from "react";
+import React from "react";
 
 import styles from "../styles/DropDown.module.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useHistory } from "react-router";
-
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -50,7 +49,7 @@ export function ProfileEditDropdown({ id }) {
   const history = useHistory();
   return (
     <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
-      <Dropdown.Toggle as={EditMenu } />
+      <Dropdown.Toggle as={EditMenu} />
       <Dropdown.Menu>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit`)}
@@ -62,7 +61,7 @@ export function ProfileEditDropdown({ id }) {
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="edit-username"
         >
-          <i className={`${styles.IconIdCard} far fa-id-card `}/>
+          <i className={`${styles.IconIdCard} far fa-id-card `} />
           change username
         </Dropdown.Item>
         <Dropdown.Item

@@ -54,7 +54,7 @@ function Contact() {
 
     try {
       const data = await axiosReq.post("/contact/", formData);
-      console.log(data);
+     // console.log(data);
       setMessage("Request sent successfully, we will contact you shortly..");
 
       // clear out the form after submission
@@ -65,9 +65,8 @@ function Contact() {
         query_text: "",
         created_at: "",
       });
-      //history.push("/");
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -182,26 +181,23 @@ function Contact() {
               </div>
             </Container>
           </Col>
-          <Col className=" p-2 text-center" md={6}
-          >
-           
-              <h2 className=" m4-2 ">
-                About us<i className={`fa-regular fa-star ${style.StarIcon}`}></i></h2>
-                <p className={`ml-2 mt-2 ${style.AboutText} lead`}>
-                  Welcome to our review website! <br/>We are dedicated to providing
-                  you with honest and informative reviews on a wide range of
-                  beauty products.<br/>At our review website, we value your feedback
-                  and encourage you to share your own experiences in the
-                  comments section. Together, we can help each other make
-                  informed purchasing decisions and find the best products and
-                  services out there. Review a product here <Link to="/reviews/write">
-                  <i className={`fa-solid fa-plus ${style.ReviewLink}`}></i>Review
-
-            
-          </Link>
-                </p>
-              
-        
+          <Col className=" p-2 text-center" md={6}>
+            <h2 className=" m4-2 ">
+              About us<i className={`fa-regular fa-star ${style.StarIcon}`}></i>
+            </h2>
+            <p className={`ml-2 mt-2 ${style.AboutText} lead`}>
+              Welcome to our review website! <br />
+              We are dedicated to providing you with honest and informative
+              reviews on a wide range of beauty products.
+              <br />
+              At our review website, we value your feedback and encourage you to
+              share your own experiences in the comments section. Together, we
+              can help each other make informed purchasing decisions and find
+              the best products and services out there. Review a product here{" "}
+              <Link to="/reviews/write">
+                <i className={`fa-solid fa-plus ${style.ReviewLink}`}></i>Review
+              </Link>
+            </p>
           </Col>
         </Row>
       </Form>
