@@ -16,16 +16,22 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import StarRating from "./StarRating";
 import { useRedirect } from "../../hooks/useRedirect";
+import ReactStars from "react-rating-stars-component";
 
 function ReviewCreateForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
+  
+  // for rating
 
-  {
-    /*rating: "", */
-  }
+  const [rating, setRating] = useState(0)
+  
+  const ratingChanged = (newRating) =>{
+      setRating(newRating)
+    }
+
+ 
 
   const [postData, setPostData] = useState({
     product_title: "",
@@ -34,9 +40,7 @@ function ReviewCreateForm() {
     price: "",
   });
 
-  {
-    /*rating: "", formData.append("rating", rating); */
-  }
+  
   const { product_title, description, image, price } = postData;
 
   const imageInput = useRef(null);
@@ -67,6 +71,8 @@ function ReviewCreateForm() {
     formData.append("description", description);
     formData.append("image", imageInput.current.files[0]);
     formData.append("price", price);
+    formData.append("rating", rating);
+
 
     try {
       const { data } = await axiosReq.post("/reviews/", formData);
@@ -82,6 +88,12 @@ function ReviewCreateForm() {
   const textFields = (
     <div className={styles.TextLeft}>
       {/* RATING */}
+      <ReactStars
+        count={5}
+        onChange={ratingChanged}
+        size={24} 
+        activeColor="#ffd700"
+      />
 
       <Form.Group>
         <Form.Label>Product Title:</Form.Label>
@@ -138,8 +150,10 @@ function ReviewCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
+
       <Row>
       <Col md={12} xl={8} className="offset-xl-2" >
+
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
         <Col md={12} xl={8} className="offset-xl-2" >

@@ -23,6 +23,7 @@ import Review from "../reviews/Review";
 import NoResults from "../../assets/no-results.png";
 
 import { ProfileEditDropdown } from "../../components/DropDown";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -33,6 +34,8 @@ function ProfilePage() {
   const [profile] = pageProfile.results;
   const [profileReviews, setProfileReviews] = useState({ results: [] });
   const is_owner = currentUser?.username === profile?.owner;
+  const history = useHistory()
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,14 +54,17 @@ function ProfilePage() {
         setHasLoaded(true);
       } catch (err) {
         //console.log(err);
+        if (err.response.status === 404 | err.response.status === 400 ) {
+          history.push("/");
+        }
       }
     };
     fetchData();
-  }, [id, setProfileData]);
+  }, [id, setProfileData,history]);
 
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      {is_owner && <ProfileEditDropdown id={profile?.id} />}
 
       <Row noGutters className="text-center">
         <Col lg={3} className="ml-4 text-lg-left">
@@ -73,13 +79,13 @@ function ProfilePage() {
           <h3 className="mt-4 font-weight-bold">{profile?.owner}</h3>{" "}
         </Col>
         <Col lg={12}>
-          <p>
+          <div>
             {profile?.description && (
               <Col className="p-3 text-center font-italic lead">
                 {profile.description}
               </Col>
             )}
-          </p>
+          </div>
           <hr />
           <div className="text-center mb-4 lead">
             Total Reviews: {profile?.reviews_count}
@@ -108,7 +114,7 @@ function ProfilePage() {
       ) : (
         <Asset
           src={NoResults}
-          message={` ${profile?.owner} hasn't posted yet...`}
+          message={` No posts yet for ${profile?.owner} `}
         />
       )}
     </>
@@ -116,7 +122,7 @@ function ProfilePage() {
 
   return (
     <Row>
-      <Col className="py-2 p-0 p-md-2 offset-2" md={6} xl={8}>
+      <Col className="py-2 p-0 p-md-2 offset-2" md={12} xl={8}>
        
         <Container className={appStyles.Content}>
           {hasLoaded ? (
@@ -128,10 +134,7 @@ function ProfilePage() {
           ) : (
             <>
             <h3 className="text-cente d-none">Profile Information</h3>
-            <Asset
-          src={NoResults}
-          
-        />
+            <Asset spinner />
         </>
       )}
           

@@ -14,13 +14,19 @@ import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import iconStyle from "../../styles/DropDown.module.css";
+import ReactStars from "react-rating-stars-component";
 
 function ReviewEditForm() {
   const [errors, setErrors] = useState({});
 
-  {
-    /*rating: "", */
-  }
+  // for rating
+
+  const [rating, setRating] = useState(0)
+  
+  const ratingChanged = (newRating) =>{
+      setRating(newRating)
+    }
+
 
   const [postData, setPostData] = useState({
     product_title: "",
@@ -42,11 +48,12 @@ function ReviewEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/reviews/${id}/`);
-        const { product_title, description, image, is_owner, price } = data;
+        const { product_title, description, image, is_owner, price,rating } = data;
 
         is_owner
-          ? setPostData({ product_title, description, image, price })
+          ? setPostData({ product_title, description, image, price,rating })
           : history.push("/");
+      
       } catch (err) {
         //console.log(err);
       }
@@ -78,6 +85,7 @@ function ReviewEditForm() {
     formData.append("product_title", product_title);
     formData.append("description", description);
     formData.append("price", price);
+    formData.append("rating", rating);
 
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
@@ -96,7 +104,13 @@ function ReviewEditForm() {
 
   const textFields = (
     <div className={styles.TextLeft}>
-      {/* RATING */}
+
+       <ReactStars
+        count={5}
+        onChange={ratingChanged}
+        size={24} 
+        activeColor="#ffd700"
+      />
 
       <Form.Group>
         <Form.Label>Product Title</Form.Label>

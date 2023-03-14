@@ -11,7 +11,7 @@ import { DropDown } from "../../components/DropDown";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/Review.module.css";
 import ModalAlert from "../../components/ModalAlert";
-
+import ReactStars from "react-rating-stars-component";
 //import Rating from 'react-rating-stars-component';
 
 
@@ -33,9 +33,9 @@ const Review = (props) => {
     updated_at,
     reviewPage,
     setReviews,
+    rating,
 
   } = props;
-  //to add rating,
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -152,10 +152,15 @@ const Review = (props) => {
         </Media>
       </Card.Body>
 
-      {/* //to add rating,{rating && (
-        <Card.Title className="text-left m-4 ">Rating:{rating}</Card.Title>
-            )}}*/}
-
+        <ReactStars
+        className="text-center"
+        count={5}
+        edit={false}
+        value={rating}
+        size={24} 
+        activeColor="#ffd700"
+      />
+     
       <Card.Body>
    
         {product_title && (

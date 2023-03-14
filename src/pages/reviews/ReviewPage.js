@@ -14,14 +14,18 @@ import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function ReviewPage() {
   const { id } = useParams();
   const [review, setReview] = useState({ results: [] });
-
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
+  const history = useHistory()
+
+  //Create a state variable for the rating.
+  const [stars, setStars] = useState();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -30,25 +34,38 @@ function ReviewPage() {
           axiosReq.get(`/reviews/${id}`),
           axiosReq.get(`/comments/?review=${id}`),
         ]);
+
+
         setReview({ results: [review] });
+        // rating
+        console.log(review)
         setComments(comments);
+        // rating
+
+        const new_stars = review.rating;
+        console.log(`Rating from api: ${review.rating}`)
+        setStars(new_stars);
+        console.log(`Rating: ${stars}`)
         
       } catch (err) {
-        //console.log(err);
+        console.log(err);
+        if (err.response.status === 404 | err.response.status === 400 ) {
+          history.push("/");
+        }
       }
     };
 
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   return (
     <Row className="h-100">
-        <Col md={12} xl={8} className="offset-xl-2" >
-
-        <Review {...review.results[0]} setReviews={setReview} reviewPage />
-        </Col>
-        <Col md={12} xl={8} className="offset-xl-2" >
-
+      <Col md={12} xl={8} className="offset-xl-2">
+        <Review {...review.results[0]} setReviews={setReview} ratingValue={stars} reviewPage/>
+        
+        
+      </Col>
+      <Col md={12} xl={8} className="offset-xl-2">
         <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
@@ -79,11 +96,12 @@ function ReviewPage() {
           ) : currentUser ? (
             <span>No comments.. Leave a comment</span>
           ) : (
-            <span>No comments yet... Please Log In to view more</span>
+            <p className="text-center">
+              No comments yet... Please Log In to view more
+            </p>
           )}
         </Container>
       </Col>
-    
     </Row>
   );
 }
