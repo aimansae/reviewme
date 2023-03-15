@@ -113,6 +113,7 @@ const NavBar = () => {
         {currentUser && addReviewIcon}
 
         <Navbar.Toggle
+          className={styles.NavIcon}
           ref={ref}
           onClick={() => setExpanded(!expanded)}
           aria-controls="basic-navbar-nav"

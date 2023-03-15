@@ -239,7 +239,7 @@ IMAGE
 | works on everypage for logged in users| :white_check_mark: |
 | **Reviews/Homepage for logged in users** | :white_check_mark: |
 | Review content and details are shown correctly | :white_check_mark: |
-| upon clicking on reviewer's avatar their profile page is rendered correctly| :white_check_mark: |
+| upon clicking on reviewer's avatar their profile page is rendered correctly with all the content| :white_check_mark: |
 | date of review is shown correctly| :white_check_mark: |
 | star rating component is showing according to rating given| :white_check_mark: |
 | hover on like button, if user is the post owner shows proper message (you can't like your own post) | :white_check_mark: |
@@ -258,7 +258,6 @@ IMAGE
 | hover on save button, shows proper message (login to save a post) | :white_check_mark: |
 | comment icon, upon click opens review detail page and invites user to login | :white_check_mark: |
 | in case of no comments, a proper message is appearing for unlogged users | :white_check_mark: |
-
 | **Review Deatail Page for logged in users** | :white_check_mark: |
 | if user is post owner upon clicking on product image, a dropdown menu appears| :white_check_mark: |
 | if edit button is clicked, a form with existing data is prepopulated user can edit the content | :white_check_mark: |
@@ -271,9 +270,19 @@ IMAGE
 | after saving edit changes, user sees the edited comment right away | :white_check_mark: |
 | if delete button is clicked, a modal requesting for confirmation appears, user can confirm or cancel the operation| :white_check_mark: |
 | if user is not the review owner, the entire content is rendered, the comment form appears, but dropdown to edit post is no longer shown | :white_check_mark: |
-
 | **Review Deatail Page for logged out users** | 
-| review detail pag shows all the content, but user can not make further actions | :white_check_mark: |
+| review detail page shows all the content, but user can not make further actions | :white_check_mark: |
+| **Contact form for logged in users** | 
+| contat page shows the form, upon submission a message appears | :white_check_mark: |
+ **Contact form for logged out users** | 
+| contat page for logged out users is not available for marketing purposes | :white_check_mark: |
+ **Profile Page** | 
+| only if user is profile owner, they can edit their username, password, bio, updated content is displayed correctly| :white_check_mark: |
+| logged out users can see the profiles form other users correctly| :white_check_mark: |
+
+
+| **Validation** |
+| all forms fields are validated and show proper alert messages if not filled correctly | :white_check_mark: |
 ## Validation
 
 WAVE Web Accessibility Evaluation Tool
