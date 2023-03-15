@@ -15,6 +15,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
+import style from "../../styles/ContactForm.module.css";
 
 function ReviewPage() {
   const { id } = useParams();
@@ -22,7 +24,7 @@ function ReviewPage() {
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
-  const history = useHistory()
+  const history = useHistory();
 
   //Create a state variable for the rating.
   const [stars, setStars] = useState();
@@ -35,35 +37,36 @@ function ReviewPage() {
           axiosReq.get(`/comments/?review=${id}`),
         ]);
 
-
         setReview({ results: [review] });
         // rating
-        console.log(review)
+        console.log(review);
         setComments(comments);
         // rating
 
         const new_stars = review.rating;
-        console.log(`Rating from api: ${review.rating}`)
+        console.log(`Rating from api: ${review.rating}`);
         setStars(new_stars);
-        console.log(`Rating: ${stars}`)
-        
+        console.log(`Rating: ${stars}`);
       } catch (err) {
         console.log(err);
-        if (err.response.status === 404 | err.response.status === 400 ) {
+        if ((err.response.status === 404) | (err.response.status === 400)) {
           history.push("/");
         }
       }
     };
 
     handleMount();
-  }, [id, history]);
+  }, [id, history, stars]);
 
   return (
     <Row className="h-100">
       <Col md={12} xl={8} className="offset-xl-2">
-        <Review {...review.results[0]} setReviews={setReview} ratingValue={stars} reviewPage/>
-        
-        
+        <Review
+          {...review.results[0]}
+          setReviews={setReview}
+          ratingValue={stars}
+          reviewPage
+        />
       </Col>
       <Col md={12} xl={8} className="offset-xl-2">
         <Container className={appStyles.Content}>
@@ -76,7 +79,7 @@ function ReviewPage() {
               setComments={setComments}
             />
           ) : comments.results.length ? (
-            "Comments"
+            <p className="text-center lead text-secondary">Comments</p>
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
@@ -94,10 +97,16 @@ function ReviewPage() {
               next={() => fetchMoreData(comments, setComments)}
             />
           ) : currentUser ? (
-            <span>No comments.. Leave a comment</span>
+            <p className="text-left text-secondary">
+              No comments yet... Leave a comment
+            </p>
           ) : (
-            <p className="text-center">
-              No comments yet... Please Log In to view more
+            <p className="text-left text-secondary">
+              No comments yet...{" "}
+              <Link to="/login">
+                <i className={`fa-solid fa-plus ${style.ReviewLink}`}></i>Login
+                to see more
+              </Link>
             </p>
           )}
         </Container>

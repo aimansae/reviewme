@@ -193,7 +193,7 @@ function Contact() {
               At our review website, we value your feedback and encourage you to
               share your own experiences in the comments section. Together, we
               can help each other make informed purchasing decisions and find
-              the best products and services out there. Review a product here{" "}
+              the best products and services out there. <br />Review a product here{" "}
               <Link to="/reviews/write">
                 <i className={`fa-solid fa-plus ${style.ReviewLink}`}></i>Review
               </Link>

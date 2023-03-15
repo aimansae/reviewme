@@ -121,7 +121,7 @@ const Review = (props) => {
               ...review,
               save_id: data.id,
             } : review;
-        }),
+        }) 
       }));
     } catch (err) {
     }
@@ -140,7 +140,7 @@ const Review = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_image} height={45} />
+            <Avatar className="font-weight-bold" src={profile_image} height={45} />
                {owner}
           </Link>
           <div className="d-flex align-items-center">
@@ -159,20 +159,21 @@ const Review = (props) => {
         value={rating}
         size={24} 
         activeColor="#ffd700"
-      />
+     
+      />   {rating}
      
       <Card.Body>
    
         {product_title && (
-          <Card.Title className={`text-center ${styles.Title} `}>{product_title}</Card.Title>
+          <Card.Title className={`text-center font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
         )}
          </Card.Body>
          <Card.Body>
-        {description && <Card.Text className="text-left">{description}</Card.Text>}
+        {description && <Card.Text className="text-left font-italic">{description}</Card.Text>}
         </Card.Body>
         <Card.Body>
-        {price && <Card.Text className="text-left blockquote"> Price paid €:
-       {price}
+        {price && <Card.Text className="text-left font-weight-bold"> Price paid: 
+        € {price}
         </Card.Text>}
         </Card.Body>
 
