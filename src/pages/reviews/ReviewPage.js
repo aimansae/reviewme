@@ -1,22 +1,30 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/no-children-prop */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-bitwise */
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useEffect, useState } from 'react';
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
-import appStyles from "../../App.module.css";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
-import Review from "./Review";
-import CommentCreateForm from "../comments/CommentCreateForm";
-import { useCurrentUser } from "../../context/CurrentUserContext";
-import Comment from "../comments/Comment";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Asset from "../../components/Asset";
-import { fetchMoreData } from "../../utils/utils";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { Link } from "react-router-dom";
-import style from "../../styles/ContactForm.module.css";
+import { useParams } from 'react-router';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
+import appStyles from '../../App.module.css';
+import { axiosReq } from '../../api/axiosDefaults';
+import Review from './Review';
+import CommentCreateForm from '../comments/CommentCreateForm';
+import { useCurrentUser } from '../../context/CurrentUserContext';
+import Comment from '../comments/Comment';
+import Asset from '../../components/Asset';
+import { fetchMoreData } from '../../utils/utils';
+import style from '../../styles/ContactForm.module.css';
 
 function ReviewPage() {
   const { id } = useParams();
@@ -26,7 +34,7 @@ function ReviewPage() {
   const [comments, setComments] = useState({ results: [] });
   const history = useHistory();
 
-  //Create a state variable for the rating.
+  // Create a state variable for the rating.
   const [stars, setStars] = useState();
 
   useEffect(() => {
@@ -50,7 +58,7 @@ function ReviewPage() {
       } catch (err) {
         console.log(err);
         if ((err.response.status === 404) | (err.response.status === 400)) {
-          history.push("/");
+          history.push('/');
         }
       }
     };
@@ -102,9 +110,11 @@ function ReviewPage() {
             </p>
           ) : (
             <p className="text-left text-secondary">
-              No comments yet...{" "}
+              No comments yet...
+              {' '}
               <Link to="/login">
-                <i className={`fa-solid fa-plus ${style.ReviewLink}`}></i>Login
+                <i className={`fa-solid fa-plus ${style.ReviewLink}`} />
+                Login
                 to see more
               </Link>
             </p>

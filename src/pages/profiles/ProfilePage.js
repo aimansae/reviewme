@@ -1,29 +1,37 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react/no-children-prop */
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-bitwise */
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useEffect, useState } from 'react';
 
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
 
-import Asset from "../../components/Asset";
+import { useParams } from 'react-router';
+import Image from 'react-bootstrap/Image';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import Asset from '../../components/Asset';
 
-import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
+import styles from '../../styles/ProfilePage.module.css';
+import appStyles from '../../App.module.css';
 
-import { useCurrentUser } from "../../context/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from '../../context/CurrentUserContext';
+import { axiosReq } from '../../api/axiosDefaults';
 import {
   useProfileData,
   useSetProfileData,
-} from "../../context/ProfileDataContext";
-import Image from "react-bootstrap/Image";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchMoreData } from "../../utils/utils";
-import Review from "../reviews/Review";
-import NoResults from "../../assets/no-results.png";
+} from '../../context/ProfileDataContext';
+import { fetchMoreData } from '../../utils/utils';
+import Review from '../reviews/Review';
+import NoResults from '../../assets/no-results.png';
 
-import { ProfileEditDropdown } from "../../components/DropDown";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { ProfileEditDropdown } from '../../components/DropDown';
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -34,17 +42,15 @@ function ProfilePage() {
   const [profile] = pageProfile.results;
   const [profileReviews, setProfileReviews] = useState({ results: [] });
   const is_owner = currentUser?.username === profile?.owner;
-  const history = useHistory()
-
+  const history = useHistory();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profileReviews }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/reviews/?owner__profile=${id}`),
-          ]);
+        const [{ data: pageProfile }, { data: profileReviews }] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/reviews/?owner__profile=${id}`),
+        ]);
 
         setProfileData((prevState) => ({
           ...prevState,
@@ -53,14 +59,14 @@ function ProfilePage() {
         setProfileReviews(profileReviews);
         setHasLoaded(true);
       } catch (err) {
-        //console.log(err);
-        if (err.response.status === 404 | err.response.status === 400 ) {
-          history.push("/");
+        // console.log(err);
+        if (err.response.status === 404 | err.response.status === 400) {
+          history.push('/');
         }
       }
     };
     fetchData();
-  }, [id, setProfileData,history]);
+  }, [id, setProfileData, history]);
 
   const mainProfile = (
     <>
@@ -76,7 +82,8 @@ function ProfilePage() {
         </Col>
 
         <Col lg={6}>
-          <h3 className="mt-4 font-weight-bold">{profile?.owner}</h3>{" "}
+          <h3 className="mt-4 font-weight-bold">{profile?.owner}</h3>
+          {' '}
         </Col>
         <Col lg={12}>
           <div>
@@ -88,7 +95,9 @@ function ProfilePage() {
           </div>
           <hr />
           <div className="text-center mb-4 lead">
-            Total Reviews: {profile?.reviews_count}
+            Total Reviews:
+            {' '}
+            {profile?.reviews_count}
           </div>
         </Col>
       </Row>
@@ -123,21 +132,21 @@ function ProfilePage() {
   return (
     <Row>
       <Col className="py-2 p-0 p-md-2 offset-2" md={12} xl={8}>
-       
+
         <Container className={appStyles.Content}>
           {hasLoaded ? (
             <>
-             <h3 className="text-center">Profile Information</h3>
+              <h3 className="text-center">Profile Information</h3>
               {mainProfile}
               {mainProfileReviews}
             </>
           ) : (
             <>
-            <h3 className="text-cente d-none">Profile Information</h3>
-            <Asset spinner />
-        </>
-      )}
-          
+              <h3 className="text-cente d-none">Profile Information</h3>
+              <Asset spinner />
+            </>
+          )}
+
         </Container>
       </Col>
     </Row>

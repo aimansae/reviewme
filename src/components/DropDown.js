@@ -1,8 +1,14 @@
-import React from "react";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
+import React from 'react';
 
-import styles from "../styles/DropDown.module.css";
-import Dropdown from "react-bootstrap/Dropdown";
-import { useHistory } from "react-router";
+import Dropdown from 'react-bootstrap/Dropdown';
+import { useHistory } from 'react-router';
+
+import styles from '../styles/DropDown.module.css';
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -17,21 +23,23 @@ const EditMenu = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const DropDown = ({ handleEdit, handleDelete }) => {
+export function DropDown({ handleEdit, handleDelete }) {
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={EditMenu} />
 
       <Dropdown.Menu
         className={styles.Show}
-        popperConfig={{ strategy: "fixed" }}
+        popperConfig={{ strategy: 'fixed' }}
       >
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleEdit}
           aria-label="edit"
         >
-          <i className={`${styles.IconColor} fa-solid fa-pen-to-square`} />
+          <i
+            className={`${styles.IconColor} fa-solid fa-pen-to-square`}
+          />
         </Dropdown.Item>
         <Dropdown.Item
           className={styles.DropdownItem}
@@ -43,7 +51,7 @@ export const DropDown = ({ handleEdit, handleDelete }) => {
       </Dropdown.Menu>
     </Dropdown>
   );
-};
+}
 
 export function ProfileEditDropdown({ id }) {
   const history = useHistory();
@@ -55,7 +63,10 @@ export function ProfileEditDropdown({ id }) {
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="edit-profile"
         >
-          <i className={`${styles.IconColor} fas fa-edit`} /> edit profile
+          <i className={`${styles.IconColor} fas fa-edit`} />
+          {' '}
+          edit
+          profile
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}

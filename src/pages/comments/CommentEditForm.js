@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import { axiosRes } from "../../api/axiosDefaults";
-import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import Form from 'react-bootstrap/Form';
+import { axiosRes } from '../../api/axiosDefaults';
+import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/CommentCreateEditForm.module.css';
 
 function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments } = props;
+  const {
+    id, content, setShowEditForm, setComments,
+  } = props;
 
   const [formContent, setFormContent] = useState(content);
 
@@ -22,19 +26,17 @@ function CommentEditForm(props) {
       });
       setComments((prevComments) => ({
         ...prevComments,
-        results: prevComments.results.map((comment) => {
-          return comment.id === id
-            ? {
-                ...comment,
-                content: formContent.trim(),
-                updated_at: "now",
-              }
-            : comment;
-        }),
+        results: prevComments.results.map((comment) => (comment.id === id
+          ? {
+            ...comment,
+            content: formContent.trim(),
+            updated_at: 'now',
+          }
+          : comment)),
       }));
       setShowEditForm(false);
     } catch (err) {
-      //console.log(err);
+      // console.log(err);
     }
   };
 

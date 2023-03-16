@@ -20,10 +20,11 @@ p {
 
 .Spacing {
   padding-top: 60px;
+ 
 }
 
 .Content {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 10px;
   border-radius: 2px;
 }

@@ -1,24 +1,26 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router } from "react-router-dom";
-import { CurrentUserProvider } from "./context/CurrentUserContext";
-import { ProfileDataProvider } from "./context/ProfileDataContext";
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
+
+import ReactDOM from 'react-dom';
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import App from './App';
+import { CurrentUserProvider } from './context/CurrentUserContext';
+import { ProfileDataProvider } from './context/ProfileDataContext';
+import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
+  <Router>
+    <CurrentUserProvider>
+      <ProfileDataProvider>
+        <App />
+      </ProfileDataProvider>
+    </CurrentUserProvider>
+  </Router>,
 
-    <Router>
-      <CurrentUserProvider>
-        <ProfileDataProvider>
-          <App />
-        </ProfileDataProvider>
-      </CurrentUserProvider>
-    </Router>,
-
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

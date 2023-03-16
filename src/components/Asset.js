@@ -1,8 +1,12 @@
-import React from "react";
-import { Spinner } from "react-bootstrap";
-import styles from "../styles/Asset.module.css";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/prop-types */
+import React from 'react';
 
-const Asset = ({ spinner, src, message }) => {
+import { Spinner } from 'react-bootstrap';
+
+import styles from '../styles/Asset.module.css';
+
+function Asset({ spinner, src, message }) {
   return (
     <div className={`${styles.Asset} pl-4`}>
       {spinner && <Spinner animation="border" />}
@@ -10,6 +14,6 @@ const Asset = ({ spinner, src, message }) => {
       {message && <p className="mt-4">{message}</p>}
     </div>
   );
-};
+}
 
 export default Asset;

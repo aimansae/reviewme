@@ -1,22 +1,22 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
+/* eslint-disable react/jsx-filename-extension */
+import React from 'react';
 
-import logo from "../assets/logo.png";
+import axios from 'axios';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { NavLink } from 'react-router-dom';
 
-import styles from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
+import logo from '../assets/logo.png';
 import {
   useCurrentUser,
   useSetCurrentUser,
-} from "../context/CurrentUserContext";
+} from '../context/CurrentUserContext';
+import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+import styles from '../styles/NavBar.module.css';
+import { removeTokenTimestamp } from '../utils/utils';
 
-import axios from "axios";
-import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
-import { removeTokenTimestamp } from "../utils/utils";
-
-const NavBar = () => {
+function NavBar() {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   // to toggle burger menu
@@ -24,11 +24,11 @@ const NavBar = () => {
 
   const handleLogOut = async () => {
     try {
-      await axios.post("dj-rest-auth/logout/");
+      await axios.post('dj-rest-auth/logout/');
       setCurrentUser(null);
       removeTokenTimestamp();
     } catch (err) {
-      //console.log(err);
+      // console.log(err);
     }
   };
 
@@ -38,7 +38,8 @@ const NavBar = () => {
       activeClassName={styles.Active}
       to="/reviews/write"
     >
-      <i className="fa-solid fa-plus"></i>Review
+      <i className="fa-solid fa-plus" />
+      Review
     </NavLink>
   );
 
@@ -49,7 +50,8 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/saved"
       >
-        <i className="fa-solid fa-tag"></i>Saved
+        <i className="fa-solid fa-tag" />
+        Saved
       </NavLink>
 
       <NavLink
@@ -57,18 +59,21 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/liked"
       >
-        <i className="fa-solid fa-heart"></i>Liked
+        <i className="fa-solid fa-heart" />
+        Liked
       </NavLink>
 
       <NavLink className={styles.NavLink} to="/" onClick={handleLogOut}>
-        <i className="fa-solid fa-right-from-bracket"></i>Logout
+        <i className="fa-solid fa-right-from-bracket" />
+        Logout
       </NavLink>
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
         to="/contact"
       >
-        <i className="fa-sharp fa-solid fa-file-signature"></i>Contact
+        <i className="fa-sharp fa-solid fa-file-signature" />
+        Contact
       </NavLink>
 
       <NavLink
@@ -76,7 +81,8 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <i className="fa-solid fa-user"></i>Profile
+        <i className="fa-solid fa-user" />
+        Profile
       </NavLink>
     </>
   );
@@ -88,7 +94,8 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/login"
       >
-        <i className="fa-solid fa-right-to-bracket"></i>Log in
+        <i className="fa-solid fa-right-to-bracket" />
+        Log in
       </NavLink>
 
       <NavLink
@@ -96,13 +103,14 @@ const NavBar = () => {
         activeClassName={styles.Active}
         to="/signup"
       >
-        <i className="fa-sharp fa-solid fa-user-plus"></i>Sign up
+        <i className="fa-sharp fa-solid fa-user-plus" />
+        Sign up
       </NavLink>
     </>
   );
 
   return (
-    //to change color bg= and fixed="top"
+  // to change color bg= and fixed="top"
     <Navbar expanded={expanded} className={styles.NavBar} expand="md">
       <Container>
         <NavLink to="/">
@@ -126,7 +134,8 @@ const NavBar = () => {
               activeClassName={styles.Active}
               to="/"
             >
-              <i className="fa-sharp fa-solid fa-house"></i>Home
+              <i className="fa-sharp fa-solid fa-house" />
+              Home
             </NavLink>
 
             {currentUser ? loggedInIcons : loggedOutIcons}
@@ -135,6 +144,6 @@ const NavBar = () => {
       </Container>
     </Navbar>
   );
-};
+}
 
 export default NavBar;

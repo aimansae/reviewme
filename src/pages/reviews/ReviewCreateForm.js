@@ -1,47 +1,50 @@
-import React, { useRef, useState } from "react";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable camelcase */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useRef, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
 
-import Upload from "../../assets/upload.png";
+import { useHistory } from 'react-router';
+import ReactStars from 'react-rating-stars-component';
+import Upload from '../../assets/upload.png';
 
-import Asset from "../../components/Asset";
-import styles from "../../styles/ReviewCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import { useHistory } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
-import ReactStars from "react-rating-stars-component";
+import Asset from '../../components/Asset';
+import styles from '../../styles/ReviewCreateEditForm.module.css';
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useRedirect } from '../../hooks/useRedirect';
 
 function ReviewCreateForm() {
-  useRedirect("loggedOut");
+  useRedirect('loggedOut');
   const [errors, setErrors] = useState({});
-  
+
   // for rating
 
-  const [rating, setRating] = useState(0)
-  
-  const ratingChanged = (newRating) =>{
-      setRating(newRating)
-    }
+  const [rating, setRating] = useState(0);
 
- 
+  const ratingChanged = (newRating) => {
+    setRating(newRating);
+  };
 
   const [postData, setPostData] = useState({
-    product_title: "",
-    description: "",
-    image: "",
-    price: "",
+    product_title: '',
+    description: '',
+    image: '',
+    price: '',
   });
 
-  
-  const { product_title, description, image, price } = postData;
+  const {
+    product_title, description, image, price,
+  } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -67,18 +70,17 @@ function ReviewCreateForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("product_title", product_title);
-    formData.append("description", description);
-    formData.append("image", imageInput.current.files[0]);
-    formData.append("price", price);
-    formData.append("rating", rating);
-
+    formData.append('product_title', product_title);
+    formData.append('description', description);
+    formData.append('image', imageInput.current.files[0]);
+    formData.append('price', price);
+    formData.append('rating', rating);
 
     try {
-      const { data } = await axiosReq.post("/reviews/", formData);
+      const { data } = await axiosReq.post('/reviews/', formData);
       history.push(`/reviews/${data.id}`);
     } catch (err) {
-      //console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -91,7 +93,7 @@ function ReviewCreateForm() {
       <ReactStars
         count={5}
         onChange={ratingChanged}
-        size={24} 
+        size={24}
         activeColor="#ffd700"
       />
 
@@ -150,13 +152,13 @@ function ReviewCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-{/*message*/}
+      {/* message */}
       <Row>
-      <Col md={12} xl={8} className="offset-xl-2" >
+        <Col md={12} xl={8} className="offset-xl-2">
 
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
-        <Col md={12} xl={8} className="offset-xl-2" >
+        <Col md={12} xl={8} className="offset-xl-2">
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >

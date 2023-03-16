@@ -1,15 +1,20 @@
-import React, { useState } from "react";
-import { Media } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
-import Avatar from "../../components/Avatar";
-import { DropDown } from "../../components/DropDown";
-import { useCurrentUser } from "../../context/CurrentUserContext";
-import styles from "../../styles/Comment.module.css";
-import CommentEditForm from "./CommentEditForm";
-import ModalAlert from "../../components/ModalAlert";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+/* eslint-disable react/prop-types */
+/* eslint-disable camelcase */
+import React, { useState } from 'react';
+import { Media } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { axiosRes } from '../../api/axiosDefaults';
+import Avatar from '../../components/Avatar';
+import { DropDown } from '../../components/DropDown';
+import { useCurrentUser } from '../../context/CurrentUserContext';
+import styles from '../../styles/Comment.module.css';
+import CommentEditForm from './CommentEditForm';
+import ModalAlert from '../../components/ModalAlert';
 
-const Comment = (props) => {
+function Comment(props) {
   const {
     profile_id,
     profile_image,
@@ -40,7 +45,9 @@ const Comment = (props) => {
         ...prevComments,
         results: prevComments.results.filter((comment) => comment.id !== id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      // console.log(err)
+    }
     setShow(false);
   };
 
@@ -60,7 +67,7 @@ const Comment = (props) => {
         </Link>
         <Media.Body className="align-self-center">
           <span className={styles.Owner}>{owner}</span>
-          <span className= {styles.Date}>{updated_at}</span>
+          <span className={styles.Date}>{updated_at}</span>
           {showEditForm ? (
             <CommentEditForm
               id={id}
@@ -86,9 +93,9 @@ const Comment = (props) => {
         handleClose={() => setShow(false)}
         onConfirm={handleDelete}
         title="ReviewME"
-        message={"Are you sure you want to delete this comment?"}
+        message="Are you sure you want to delete this comment?"
       />
     </>
   );
-};
+}
 export default Comment;

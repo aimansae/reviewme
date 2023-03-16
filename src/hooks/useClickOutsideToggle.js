@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const useClickOutsideToggle = () => {
-  //Toggle burger menu
+  // Toggle burger menu
   const [expanded, setExpanded] = useState(false);
 
   const ref = useRef(null);
@@ -12,9 +12,9 @@ const useClickOutsideToggle = () => {
         setExpanded(false);
       }
     };
-    document.addEventListener("mouseup", handleClickOutside);
+    document.addEventListener('mouseup', handleClickOutside);
     return () => {
-      document.removeEventListener("mouseup", handleClickOutside);
+      document.removeEventListener('mouseup', handleClickOutside);
     };
   }, [ref]);
 

@@ -1,44 +1,51 @@
-import React, { useEffect, useRef, useState } from "react";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useEffect, useRef, useState } from 'react';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
-import Image from "react-bootstrap/Image";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import Image from 'react-bootstrap/Image';
 
-import styles from "../../styles/ReviewCreateEditForm.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import { useHistory, useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
-import iconStyle from "../../styles/DropDown.module.css";
-import ReactStars from "react-rating-stars-component";
+import { useHistory, useParams } from 'react-router';
+import ReactStars from 'react-rating-stars-component';
+import styles from '../../styles/ReviewCreateEditForm.module.css';
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import { axiosReq } from '../../api/axiosDefaults';
+import iconStyle from '../../styles/DropDown.module.css';
 
 function ReviewEditForm() {
   const [errors, setErrors] = useState({});
 
   // for rating
 
-  const [rating, setRating] = useState(0)
-  
-  const ratingChanged = (newRating) =>{
-      setRating(newRating)
-    }
+  const [rating, setRating] = useState(0);
 
+  const ratingChanged = (newRating) => {
+    setRating(newRating);
+  };
 
   const [postData, setPostData] = useState({
-    product_title: "",
-    description: "",
-    image: "",
-    price: "",
+    product_title: '',
+    description: '',
+    image: '',
+    price: '',
   });
 
   {
-    /*rating: "", formData.append("rating", rating); */
+    /* rating: "", formData.append("rating", rating); */
   }
-  const { product_title, description, image, price } = postData;
+  const {
+    product_title, description, image, price,
+  } = postData;
 
   const imageInput = useRef(null);
   const history = useHistory();
@@ -48,14 +55,17 @@ function ReviewEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/reviews/${id}/`);
-        const { product_title, description, image, is_owner, price,rating } = data;
+        const {
+          product_title, description, image, is_owner, price, rating,
+        } = data;
 
         is_owner
-          ? setPostData({ product_title, description, image, price,rating })
-          : history.push("/");
-      
+          ? setPostData({
+            product_title, description, image, price, rating,
+          })
+          : history.push('/');
       } catch (err) {
-        //console.log(err);
+        // console.log(err);
       }
     };
     handleMount();
@@ -82,20 +92,20 @@ function ReviewEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    formData.append("product_title", product_title);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("rating", rating);
+    formData.append('product_title', product_title);
+    formData.append('description', description);
+    formData.append('price', price);
+    formData.append('rating', rating);
 
     if (imageInput?.current?.files[0]) {
-      formData.append("image", imageInput.current.files[0]);
+      formData.append('image', imageInput.current.files[0]);
     }
 
     try {
       await axiosReq.put(`/reviews/${id}/`, formData);
       history.push(`/reviews/${id}`);
     } catch (err) {
-      //console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -105,10 +115,10 @@ function ReviewEditForm() {
   const textFields = (
     <div className={styles.TextLeft}>
 
-       <ReactStars
+      <ReactStars
         count={5}
         onChange={ratingChanged}
-        size={24} 
+        size={24}
         activeColor="#ffd700"
       />
 
@@ -168,10 +178,10 @@ function ReviewEditForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-      <Col md={12} xl={8} className="offset-xl-2" >
+        <Col md={12} xl={8} className="offset-xl-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>
-        <Col md={12} xl={8} className="offset-xl-2" >
+        <Col md={12} xl={8} className="offset-xl-2">
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >

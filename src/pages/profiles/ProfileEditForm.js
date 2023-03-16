@@ -1,24 +1,27 @@
-import React, { useState, useEffect, useRef } from "react";
-import { useHistory, useParams } from "react-router-dom";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-shadow */
+import React, { useState, useEffect, useRef } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Image from "react-bootstrap/Image";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
 
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq } from '../../api/axiosDefaults';
 import {
   useCurrentUser,
   useSetCurrentUser,
-} from "../../context/CurrentUserContext";
+} from '../../context/CurrentUserContext';
 
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
+import btnStyles from '../../styles/Button.module.css';
+import appStyles from '../../App.module.css';
 
-const ProfileEditForm = () => {
+function ProfileEditForm() {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
@@ -26,9 +29,9 @@ const ProfileEditForm = () => {
   const imageFile = useRef();
 
   const [profileData, setProfileData] = useState({
-    name: "",
-    description: "",
-    image: "",
+    name: '',
+    description: '',
+    image: '',
   });
   const { name, description, image } = profileData;
 
@@ -42,11 +45,11 @@ const ProfileEditForm = () => {
           const { name, description, image } = data;
           setProfileData({ name, description, image });
         } catch (err) {
-          //console.log(err);
-          history.push("/");
+          // console.log(err);
+          history.push('/');
         }
       } else {
-        history.push("/");
+        history.push('/');
       }
     };
 
@@ -63,11 +66,11 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", description);
+    formData.append('name', name);
+    formData.append('description', description);
 
     if (imageFile?.current?.files[0]) {
-      formData.append("image", imageFile?.current?.files[0]);
+      formData.append('image', imageFile?.current?.files[0]);
     }
 
     try {
@@ -78,7 +81,7 @@ const ProfileEditForm = () => {
       }));
       history.goBack();
     } catch (err) {
-      //console.log(err);
+      // console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -163,6 +166,6 @@ const ProfileEditForm = () => {
       </Row>
     </Form>
   );
-};
+}
 
 export default ProfileEditForm;

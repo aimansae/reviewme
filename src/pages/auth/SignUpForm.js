@@ -1,34 +1,35 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-filename-extension */
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-import styles from "../../styles/SignInUpForm.module.css";
-import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
 
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
+import axios from 'axios';
+import appStyles from '../../App.module.css';
+import btnStyles from '../../styles/Button.module.css';
+import styles from '../../styles/SignInUpForm.module.css';
+import { useRedirect } from '../../hooks/useRedirect';
 
-import axios from "axios";
-import { useRedirect } from "../../hooks/useRedirect";
-
-const SignUpForm = () => {
-  useRedirect("loggedIn");
+function SignUpForm() {
+  useRedirect('loggedIn');
   const [signUpData, setSignUpData] = useState({
-    username: "",
-    password1: "",
-    password2: "",
+    username: '',
+    password1: '',
+    password2: '',
   });
-  //destructuring signUpData
+  // destructuring signUpData
   const { username, password1, password2 } = signUpData;
 
   // errors
   const [errors, setErrors] = useState({});
   const history = useHistory();
-  //onChange function for input
+  // onChange function for input
 
   const handleChange = (event) => {
     setSignUpData({
@@ -41,8 +42,8 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/login");
+      await axios.post('/dj-rest-auth/registration/', signUpData);
+      history.push('/login');
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -113,7 +114,7 @@ const SignUpForm = () => {
             >
               Sign up
             </Button>
-            {/*if passwords dont match Credit CI walkthrough*/}
+            {/* if passwords dont match Credit CI walkthrough */}
 
             {errors.non_field_errors?.map((message, idx) => (
               <Alert variant="danger" className="text-center mt-3" key={idx}>
@@ -124,12 +125,14 @@ const SignUpForm = () => {
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/login">
-            Already have an account? <span>Login in</span>
+            Already have an account?
+            {' '}
+            <span>Login in</span>
           </Link>
         </Container>
       </Col>
     </Row>
   );
-};
+}
 
 export default SignUpForm;

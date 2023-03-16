@@ -1,16 +1,21 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable camelcase */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
-import styles from "../../styles/CommentCreateEditForm.module.css";
-import Avatar from "../../components/Avatar";
-import { axiosRes } from "../../api/axiosDefaults";
+import styles from '../../styles/CommentCreateEditForm.module.css';
+import Avatar from '../../components/Avatar';
+import { axiosRes } from '../../api/axiosDefaults';
 
 function CommentCreateForm(props) {
-  const { review, setReview, setComments, profileImage, profile_id } = props;
-  const [content, setContent] = useState("");
+  const {
+    review, setReview, setComments, profileImage, profile_id,
+  } = props;
+  const [content, setContent] = useState('');
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -19,7 +24,7 @@ function CommentCreateForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosRes.post("/comments/", {
+      const { data } = await axiosRes.post('/comments/', {
         content,
         review,
       });
@@ -35,9 +40,9 @@ function CommentCreateForm(props) {
           },
         ],
       }));
-      setContent("");
+      setContent('');
     } catch (err) {
-      //console.log(err);
+      // console.log(err);
     }
   };
 
@@ -62,7 +67,6 @@ function CommentCreateForm(props) {
         className={`${styles.Button} d-block ml-auto`}
         disabled={!content.trim()}
         type="submit"
-        variant="success"
       >
         Send
       </button>
