@@ -18,8 +18,8 @@ Deployed Backend API [link](https://drf-reviewme.herokuapp.com/)
 
 ## Github Repository
 
-[Frontend Repository](https://github.com/aimansae/reviewme)  
-[Backend Repository](https://github.com/aimansae/reviewme-api)
+Frontend [Repository](https://github.com/aimansae/reviewme)  
+Backend [Repository](https://github.com/aimansae/reviewme-api)
 
 ## Table Of Contents
 
@@ -27,7 +27,7 @@ Deployed Backend API [link](https://drf-reviewme.herokuapp.com/)
     -   [Live-site](#live-site 'Live Site')
     -   [Github Repository](#github-repository 'Github Repository')
 -   [Ux User Experience](#ux-user-experience 'UX User Experience')
-    -   [User Stories](#user-stories 'User Stories') LINK
+    -   [User Stories](#user-stories 'User Stories') 
     -   [Agile Methodology](#agile-methodology 'Agile Methodology')
     -   [Design](#design 'Design')
         -   [Typography](#typography 'Typography')
@@ -115,18 +115,15 @@ A mix of Google [Fonts Raleway](https://fonts.google.com/?query=raleway) and [La
 ![Contact Page](readme-docs/images/contact-page.png)
 
 - Profile Page
-![Profile Page](readme-docs/images/smartphone-view.png)
+![Profile Page](readme-docs/images/profile-page.png)
 
-- Small Device View
-![Small Device View](readme-docs/images/profile-page.png)
+- Smartphone View
+![Smartphone View](readme-docs/images/smartphone-view.png)
 
 
 
 </details>
 <br>
-
-CHECK
-IMAGE
 
 ## Features
 
@@ -222,6 +219,10 @@ IMAGE
 ## Testing
 
 ## Manual testing:
+<details>
+<summary><strong>Manual testing is available here
+</strong></summary>
+<br>
 
 | Testing                                                                                                                                 | Passed             |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
@@ -311,14 +312,17 @@ IMAGE
 | **Review Deatail Page for logged out users**                                                                                            |
 | review detail page shows all the content, but user can not make further actions                                                         | :white_check_mark: |
 | **Contact form for logged in users**                                                                                                    |
-| contat page shows the form, upon submission a message appears                                                                           | :white_check_mark: |
+| contact page shows the form, upon submission a message appears                                                                           | :white_check_mark: |
 | **Contact form for logged out users**                                                                                                   |
-| contat page for logged out users is not available for marketing purposes                                                                | :white_check_mark: |
+| contact page for logged out users is not available for marketing purposes                                                                | :white_check_mark: |
 | **Profile Page**                                                                                                                        |
 | only if user is profile owner, they can edit their username, password, bio, updated content is displayed correctly                      | :white_check_mark: |
 | logged out users can see the profiles form other users correctly                                                                        | :white_check_mark: |
 | **Validation**                                                                                                                          |
 | all forms fields are validated and show proper alert messages if not filled correctly                                                   | :white_check_mark: |
+
+<br>
+</details>
 
 ## Validation
 
@@ -354,7 +358,6 @@ If a users types in url bar /profiles:(existing user id) the view renders a wron
 
 [Heroku](https://dashboard.heroku.com/) for deployment
 
-## Testing
 
 ## Additional Resources
 

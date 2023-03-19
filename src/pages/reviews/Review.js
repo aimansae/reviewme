@@ -123,6 +123,7 @@ function Review(props) {
             ...review,
             save_id: data.id,
           } : review)),
+
       }));
     } catch (err) {
       // console.log(err)
@@ -154,7 +155,7 @@ function Review(props) {
         </Card.Body>
 
         <ReactStars
-          className="text-center"
+          className="text-right"
           count={5}
           edit={false}
           value={rating}
@@ -163,24 +164,21 @@ function Review(props) {
         />
         {' '}
         {rating}
-
-        <Card.Body>
-
+        <Card.Body className="text-left">
           {product_title && (
-          <Card.Title className={`text-center font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
+          <Card.Title className={`text-center my-2 font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
           )}
-        </Card.Body>
-        <Card.Body>
-          {description && <Card.Text className="text-left font-italic">{description}</Card.Text>}
-        </Card.Body>
-        <Card.Body>
+
+          {description && <Card.Text className="text-left mt-4">{description}</Card.Text>}
+
           {price && (
-          <Card.Text className="text-left font-weight-bold">
+          <Card.Text className="text-left mt-4 font-weight-bold">
             {' '}
             Price paid:
             €
             {price}
           </Card.Text>
+
           )}
         </Card.Body>
 
@@ -197,7 +195,7 @@ function Review(props) {
                 placement="top"
                 overlay={<Tooltip>You can&apost like your own post!</Tooltip>}
               >
-                <i className={`fa-solid fa-heart ${styles.Heart}`} />
+                <i className="fa-solid fa-heart" />
               </OverlayTrigger>
             ) : like_id ? (
               <span onClick={handleUnlike}>
