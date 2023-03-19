@@ -40,9 +40,7 @@ function ReviewEditForm() {
     price: '',
   });
 
-  {
-    /* rating: "", formData.append("rating", rating); */
-  }
+  // rating: "", formData.append("rating", rating);
   const {
     product_title, description, image, price,
   } = postData;

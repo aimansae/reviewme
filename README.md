@@ -80,13 +80,50 @@ This project is created following Agile Methodology, by separating each user sto
 
 The website color were chosen in an intuitive way so the user has an immediate idea of what the site is about. Different shades of green were used, as shown below. A customized logo was created to make the website unique and user friendly.
 
-![Color-Palette](Readme-docs/images/color-palette.png)
+![Color-Palette](readme-docs/images/color-palette.png)
 
 ### Typography
 
 A mix of Google [Fonts Raleway](https://fonts.google.com/?query=raleway) and [Lato](https://fonts.google.com/?query=lato) was used throughout the website
 
 ### Wireframes
+
+<details>
+<summary><strong>A skeleton of the initial projet view can be found here below
+</strong></summary>
+<br>
+
+
+- Signin and Signup Page
+![Sigin up page](readme-docs/images/sigin-up-page.png)
+
+
+- Home Page for Logged out users: 
+![Homepage logged out](readme-docs/images/homepage-logged-out.png)
+
+
+- Home Page for Logged in users: 
+![Homepage logged in](readme-docs/images/homepage-logged-in.png)
+
+- Review deatil page not logged in users wil not see the comment form, just comment list: 
+![Review detail](readme-docs/images/review-detail-page.png)
+
+- Review liked and saved pages, logged out users wil not see these 2 pages
+![Review saved liked pages](readme-docs/images/saved-liked-page.png)
+
+- Contact Page
+![Contact Page](readme-docs/images/contact-page.png)
+
+- Profile Page
+![Profile Page](readme-docs/images/smartphone-view.png)
+
+- Small Device View
+![Small Device View](readme-docs/images/profile-page.png)
+
+
+
+</details>
+<br>
 
 CHECK
 IMAGE
