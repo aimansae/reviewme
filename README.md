@@ -332,12 +332,23 @@ WAVE Web Accessibility Evaluation Tool
 ## Bugs
 - Error: Warning: validateDOMNesting(...): <div> cannot appear as a descendant of <p>. occured in Review.js
 I wrapped my return statement in P instead of div. 
--   Fixed by Replacing <p> with <div> 
+-   Fixed by Replacing paragraph tag with div tag
+- Star rating component was not rendering the stars active colour of the stars.
+**Fixed** thanks to tutor's help, by adding a ternary condition on <ReactStars component>
 
 
 ## Known Bug-Issues
-Star review component not rendering in ReviewPage.js and EditReview.js
-If a users types in url bar /profiles:(existing user id) the view renders a wrong profile
+- Star rating component not being prepopulaed in ReviewEditForm.js. The review object from the api is being returned correctly as intended, however the stars on the rating form itself are not diplayed with the rating star colour. In addition to that the star review field will be set as a mandatory field.
+
+- Unlike, Unsave functionality was followed from C.I. walkthrough. Upon clicking unlike or unsave, the review is not being removed from the respective pages (Saved and Liked). User has to manually reload the page, in order to see the changes. This is definitely an issue that needs to be resolved in the future.
+
+## Future Features
+- In the future users will be able to delete their profile
+- Users will be able to login with Googole accounts
+- Users will be able to contact the review owner to ask for opinions or suggestions
+- Comments will have like/ unlike functionality as well
+
+
 ## Technologies used
 
 -   JavaScript

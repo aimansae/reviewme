@@ -155,21 +155,25 @@ function Review(props) {
           </Media>
         </Card.Body>
 
+          <div className='row align-items-center ml-4'> 
         { 
           rating
           ? (
+            <div>
             <ReactStars
-                className="text-right"
                 count={5}
                 edit={false}
                 value={Number(rating)}
                 size={24}
                 color1="#ffd700"
-            />
+            /> </div>
           )
-          : null
+          : <p>No rating</p>
         }
-        ({rating})
+          <div>
+          <p className='d-flex align-items-center mt-1 font-weight-bold'>({rating})</p>
+          </div>
+          </div>
         <Card.Body>
           {product_title && (
           <Card.Title className={`text-center my-2 font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
