@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-nested-ternary */
@@ -7,6 +8,7 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable camelcase */
 /* eslint-disable react/prop-types */
+/* eslint-disable */
 import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Media from 'react-bootstrap/Media';
@@ -21,7 +23,6 @@ import { DropDown } from '../../components/DropDown';
 import { useCurrentUser } from '../../context/CurrentUserContext';
 import styles from '../../styles/Review.module.css';
 import ModalAlert from '../../components/ModalAlert';
-// import Rating from 'react-rating-stars-component';
 
 function Review(props) {
   const {
@@ -154,25 +155,32 @@ function Review(props) {
           </Media>
         </Card.Body>
 
-        <ReactStars
-          className="text-right"
-          count={5}
-          edit={false}
-          value={rating}
-          size={24}
-          activeColor="#ffd700"
-        />
+        { 
+          rating
+          ? (
+            <ReactStars
+                className="text-right"
+                count={5}
+                edit={false}
+                value={Number(rating)}
+                size={24}
+                color1="#ffd700"
+            />
+          )
+          : null
+        }
+
         {' '}
-        {rating}
-        <Card.Body className="text-left">
+        ({rating})
+        <Card.Body>
           {product_title && (
           <Card.Title className={`text-center my-2 font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
           )}
 
-          {description && <Card.Text className="text-left mt-4">{description}</Card.Text>}
+          {description && <Card.Text className="text-left">{description}</Card.Text>}
 
           {price && (
-          <Card.Text className="text-left mt-4 font-weight-bold">
+          <Card.Text className="text-center mt-4 font-weight-bold">
             {' '}
             Price paid:
             €
@@ -193,7 +201,7 @@ function Review(props) {
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can&apost like your own post!</Tooltip>}
+                overlay={<Tooltip>You can't like your own post!</Tooltip>}
               >
                 <i className="fa-solid fa-heart" />
               </OverlayTrigger>
@@ -224,7 +232,7 @@ function Review(props) {
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
-                overlay={<Tooltip>You can&apost save your own post!</Tooltip>}
+                overlay={<Tooltip>You can't save your own post!</Tooltip>}
               >
                 <i className="fa-solid fa-tag" />
               </OverlayTrigger>

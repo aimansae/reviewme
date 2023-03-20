@@ -116,6 +116,7 @@ function ReviewEditForm() {
       <ReactStars
         count={5}
         onChange={ratingChanged}
+        value={rating}
         size={24}
         activeColor="#ffd700"
       />

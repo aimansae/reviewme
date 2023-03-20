@@ -127,7 +127,7 @@ function SignUpForm() {
           <Link className={styles.Link} to="/login">
             Already have an account?
             {' '}
-            <span>Login in</span>
+            <span>Login now!</span>
           </Link>
         </Container>
       </Col>

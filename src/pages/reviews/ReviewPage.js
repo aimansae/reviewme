@@ -34,7 +34,7 @@ function ReviewPage() {
   const [comments, setComments] = useState({ results: [] });
   const history = useHistory();
 
-  // Create a state variable for the rating.
+  // State variable for the rating
   const [stars, setStars] = useState();
 
   useEffect(() => {
@@ -47,16 +47,12 @@ function ReviewPage() {
 
         setReview({ results: [review] });
         // rating
-        console.log(review);
+        // console.log(review);
         setComments(comments);
-        // rating
-
         const new_stars = review.rating;
-        console.log(`Rating from api: ${review.rating}`);
         setStars(new_stars);
-        console.log(`Rating: ${stars}`);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
         if ((err.response.status === 404) | (err.response.status === 400)) {
           history.push('/');
         }

@@ -448,6 +448,8 @@ In package.json, in scripts add:
 
 -   React documentation provided a huge help to understand components and especially [Hooks](https://www.youtube.com/watch?v=dpw9EHDh2bM&embeds_euri=https%3A%2F%2Freactjs.org%2F&feature=emb_logo) introduction, provided a great help in understanding React basic functionality
 
+- Eslint setup was made thanks to a [guide](https://gist.github.com/ianmeigh/8e603b91a38d7829d959402bfcf29d3d) provided by a fellow student on Slack
+
 -   Mentor Martina T. deserves a huge thanks you for all the mentoring, support and advices!
 
 ## Media
