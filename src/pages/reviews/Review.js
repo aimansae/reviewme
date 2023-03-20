@@ -169,8 +169,6 @@ function Review(props) {
           )
           : null
         }
-
-        {' '}
         ({rating})
         <Card.Body>
           {product_title && (
