@@ -51,7 +51,6 @@ function ProfilePage() {
           axiosReq.get(`/profiles/${id}/`),
           axiosReq.get(`/reviews/?owner__profile=${id}`),
         ]);
-
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
@@ -73,7 +72,7 @@ function ProfilePage() {
       {is_owner && <ProfileEditDropdown id={profile?.id} />}
 
       <Row noGutters className="text-center">
-        <Col lg={3} className="ml-4 text-lg-left">
+        <Col lg={3} className="text-lg-left">
           <Image
             className={styles.ProfileImage}
             roundedCircle
@@ -94,7 +93,7 @@ function ProfilePage() {
             )}
           </div>
           <hr />
-          <div className="text-center mb-4 lead">
+          <div className="text-center mb-4 ml-4 lead">
             Total Reviews:
             {' '}
             {profile?.reviews_count}
@@ -123,7 +122,7 @@ function ProfilePage() {
       ) : (
         <Asset
           src={NoResults}
-          message={` No posts yet for ${profile?.owner} `}
+          message={`No posts yet for ${profile?.owner} `}
         />
       )}
     </>
@@ -142,7 +141,7 @@ function ProfilePage() {
             </>
           ) : (
             <>
-              <h3 className="text-cente d-none">Profile Information</h3>
+              <h3 className="text-center d-none">Profile Information</h3>
               <Asset spinner />
             </>
           )}

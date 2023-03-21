@@ -1,11 +1,11 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/function-component-definition */
 import {
   createContext, useContext, useEffect, useState,
 } from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { useParams } from 'react-router';
 import { axiosReq } from '../api/axiosDefaults';
 import { useCurrentUser } from './CurrentUserContext';
 
@@ -14,19 +14,17 @@ const SetProfileDataContext = createContext();
 
 export const useProfileData = () => useContext(ProfileDataContext);
 export const useSetProfileData = () => useContext(SetProfileDataContext);
-
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
     pageProfile: { results: [] },
   });
 
   const currentUser = useCurrentUser();
-  const { id } = useParams();
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/profiles/${id}/`);
+        const { data } = await axiosReq.get(`/profiles/${currentUser.profile.id}`);
         setProfileData((prevState) => ({
           ...prevState,
           pageProfile: data,
@@ -40,7 +38,6 @@ export const ProfileDataProvider = ({ children }) => {
   }, [currentUser]);
 
   return (
-    // eslint-disable-next-line react/jsx-filename-extension
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider value={setProfileData}>
         {children}

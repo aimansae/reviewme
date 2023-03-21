@@ -329,12 +329,32 @@ IMAGE
 WAVE Web Accessibility Evaluation Tool
 [W3C Validator](https://jigsaw.w3.org/css-validator/) was used for CSS validation, all passed with no error
 
+[Eslint](https://eslint.org/) was used for frontend code validation. multiple errors were fixed. Some have been deleted across the files. Code Institute Moment app wss used as guide,therefore most of the code structure was used in ReviewMe app as well.
+
+Eslint setup caused multiple issues. 
+Some of the disabled problems are:
+
+- function component is not a function decleration
+- 'element' is missing in prop validation
+- unexpected block statement surrounding arrow body move the returned value immediately after the arrow (disabled  as its the same as Walkthrough)
+- profile_id not in camel case // ignored as per CI walkthrough
+- errors about unescaped characters  was also ignored as using the fix suggested was not displaying the word correctly.
+- json not allowed in file extension  disabled
+- /* eslint-disable react/no-array-index-key */
+- /* eslint-disable no-shadow */
+- /* eslint-disable react/jsx-filename-extension */
+- /* eslint-disable import/no-extraneous-dependencies */
+- /* eslint-disable no-bitwise */
+- /* eslint-disable camelcase */
+- /* eslint-disable react/no-children-prop */
+
+
 ## Bugs
 - Error: Warning: validateDOMNesting(...): <div> cannot appear as a descendant of <p>. occured in Review.js
 I wrapped my return statement in P instead of div. 
 -   Fixed by Replacing paragraph tag with div tag
 - Star rating component was not rendering the stars active colour of the stars.
-**Fixed** thanks to tutor's help, by adding a ternary condition on <ReactStars component>
+**Fixed** thanks to tutor's help, by adding a ternary condition on on Reviews.js page
 
 
 ## Known Bug-Issues
@@ -436,7 +456,7 @@ In api heroku settings, click Reveal Config Vars and add:
 
 (without triling slash /)
 
--   create a file axiosDefaults.js and Install the Axios package. # [Credit Monents Walkthorugh](https://github.com/Code-Institute-Solutions/moments/blob/cf955d2f2e6f70f61c92d1f9de85558d8e49f3a8/src/api/axiosDefaults.js)
+-   create a file axiosDefaults.js and Install the Axios package. # [Credit Moments Walkthorugh](https://github.com/Code-Institute-Solutions/moments/blob/cf955d2f2e6f70f61c92d1f9de85558d8e49f3a8/src/api/axiosDefaults.js)
 
 In package.json, in scripts add:
 

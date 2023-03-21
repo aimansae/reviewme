@@ -176,10 +176,10 @@ function Review(props) {
           </div>
         <Card.Body>
           {product_title && (
-          <Card.Title className={`text-center my-2 font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
+          <Card.Title className={`text-center my-4 font-weight-bold ${styles.Title} `}>{product_title}</Card.Title>
           )}
 
-          {description && <Card.Text className="text-left">{description}</Card.Text>}
+          {description && <Card.Text className="text-left my-2">{description}</Card.Text>}
 
           {price && (
           <Card.Text className="text-center mt-4 font-weight-bold">

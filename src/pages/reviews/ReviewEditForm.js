@@ -62,8 +62,6 @@ function ReviewEditForm() {
             product_title, description, image, price, rating,
           })
           : history.push('/');
-        console.log(data);
-        console.log(data.rating);
       } catch (err) {
         // console.log(err);
       }

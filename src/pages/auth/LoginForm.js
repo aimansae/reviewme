@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react';
@@ -111,7 +112,7 @@ function LoginForm() {
         </Container>
         <Container className={`mt-3 ${appStyles.Content}`}>
           <Link className={styles.Link} to="/signup">
-            Don&apost have an account?
+            Don't have an account?
             {' '}
             <span>Sign up now!</span>
           </Link>
