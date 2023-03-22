@@ -167,7 +167,13 @@ function Review(props) {
                 color1="#ffd700"
             /> </div>
           )
-          : <p>No rating</p>
+          : (<ReactStars
+            count={5}
+            edit={false}
+            value={(rating)}
+            size={24}
+            color1="#ffd700"
+        /> )
         }
           <div>
           <p className='d-flex align-items-center mt-1 font-weight-bold'>({rating})</p>
