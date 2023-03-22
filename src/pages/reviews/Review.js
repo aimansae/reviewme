@@ -60,7 +60,6 @@ function Review(props) {
     } catch (err) {
       // console.log(err);
     }
-    // check
     setShow(false);
   };
 

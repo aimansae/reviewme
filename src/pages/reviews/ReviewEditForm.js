@@ -27,7 +27,7 @@ function ReviewEditForm() {
 
   // for rating
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(null);
 
   const ratingChanged = (newRating) => {
     setRating(newRating);
@@ -56,6 +56,8 @@ function ReviewEditForm() {
         const {
           product_title, description, image, is_owner, price, rating,
         } = data;
+        setRating(rating);
+        console.log(rating);
 
         is_owner
           ? setPostData({
@@ -68,6 +70,7 @@ function ReviewEditForm() {
     };
     handleMount();
   }, [history, id]);
+  console.log(rating);
 
   const handleChange = (event) => {
     setPostData({
@@ -112,15 +115,18 @@ function ReviewEditForm() {
 
   const textFields = (
     <div className={styles.TextLeft}>
-
-      <ReactStars
-        count={5}
-        onChange={ratingChanged}
-        value={rating}
-        size={24}
-        activeColor="#ffd700"
-      />
-
+      {
+          rating !== null
+            ? (
+              <ReactStars
+                count={5}
+                onChange={ratingChanged}
+                value={rating}
+                size={24}
+                activeColor="#ffd700"
+              />
+            ) : null
+          }
       <Form.Group>
         <Form.Label>Product Title</Form.Label>
         <Form.Control
