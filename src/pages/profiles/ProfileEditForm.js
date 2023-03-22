@@ -89,7 +89,7 @@ function ProfileEditForm() {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label className="text-left">Your Bio</Form.Label>
+        <Form.Label className="text-left lead">Your Bio</Form.Label>
         <Form.Control
           as="textarea"
           value={description}

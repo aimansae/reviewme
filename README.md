@@ -245,12 +245,12 @@ After a from is submitted successfully a message will appear.
 | Signup form renders correcty                                                                                                            | :white_check_mark: |
 | Signup form renders correcty                                                                                                            | :white_check_mark: |
 | Login link for existing users redirects to login form                                                                                   | :white_check_mark: |
-| Upon signup login form shows as expected                                                                                                | :white_check_mark: |
-| Upon clicking on login button user is redirected to homepage                                                                            | :white_check_mark: |
+| Upon clicing on 'signup' login form shows as expected                                                                                                | :white_check_mark: |
+| Upon clicking on login button after inserting the info, user is redirected to homepage                                                                            | :white_check_mark: |
 | Navbar is updated correctly with content for logged in users                                                                            | :white_check_mark: |
 | **Login page**                                                                                                                          | :white_check_mark: |
 | Existing users login redirects to homepage correctly                                                                                    | :white_check_mark: |
-| Signup link for non exsiting users redirects to signup form                                                                             | :white_check_mark: |
+| Signup link for non exsiting users redirects to login form                                                                             | :white_check_mark: |
 | Navbar is updated correctly with content for logged in users                                                                            | :white_check_mark: |
 | **Logout page**                                                                                                                         | :white_check_mark: |
 | Existing users successful logout redirects to homepage correctly                                                                        | :white_check_mark: |
@@ -276,8 +276,8 @@ After a from is submitted successfully a message will appear.
 | saved/ directs to saved page                                                                                                            | :white_check_mark: |
 | liked/ directs to liked page                                                                                                            | :white_check_mark: |
 | reviews:id/ directs user to the correct review page                                                                                     | :white_check_mark: |
-| PROFILES/:id CHECK!!! CHECK!!!directs to correct page                                                                                   | :white_check_mark: |
-| contact/ directs to liked page                                                                                                          | :white_check_mark: |
+| profiles/:id directs to correct page                                                                                   | :white_check_mark: |
+| contact/ directs to contact page                                                                                                          | :white_check_mark: |
 | wrong input or non existing endpoint / directs to no-results page correctly                                                             | :white_check_mark: |
 | **Endpoints for logged out in users**                                                                                                   | :white_check_mark: |
 | /signup directs to signup form correctly                                                                                                | :white_check_mark: |
@@ -285,12 +285,12 @@ After a from is submitted successfully a message will appear.
 | saved/ directs to home page                                                                                                             | :white_check_mark: |
 | liked/ directs to home page                                                                                                             | :white_check_mark: |
 | reviews:id/ directs user to the correct review page                                                                                     | :white_check_mark: |
-| PROFILES/:id CHECK!!! CHECK!!!directs to correct page                                                                                   | :white_check_mark: |
+| profiles/:id directs to correct page                                                                                   | :white_check_mark: |
 | contact/ directs to home page                                                                                                           | :white_check_mark: |
 | wrong input or non existing endpoint / directs to no-results page correctly                                                             | :white_check_mark: |
 | **Search filter**                                                                                                                       | :white_check_mark: |
 | search filter by product title/name renders products as intended                                                                        | :white_check_mark: |
-| works on everypage for logged in users                                                                                                  | :white_check_mark: |
+| works on everypage for logged in/out users                                                                                                  | :white_check_mark: |
 | **Reviews/Homepage for logged in users**                                                                                                | :white_check_mark: |
 | Review content and details are shown correctly                                                                                          | :white_check_mark: |
 | upon clicking on reviewer's avatar their profile page is rendered correctly with all the content                                        | :white_check_mark: |
@@ -312,27 +312,27 @@ After a from is submitted successfully a message will appear.
 | hover on save button, shows proper message (login to save a post)                                                                       | :white_check_mark: |
 | comment icon, upon click opens review detail page and invites user to login                                                             | :white_check_mark: |
 | in case of no comments, a proper message is appearing for unlogged users                                                                | :white_check_mark: |
-| **Review Deatail Page for logged in users**                                                                                             | :white_check_mark: |
+| **Review Datail Page for logged in users**                                                                                             | :white_check_mark: |
 | if user is post owner upon clicking on product image, a dropdown menu appears                                                           | :white_check_mark: |
 | if edit button is clicked, a form with existing data is prepopulated user can edit the content                                          | :white_check_mark: |
 | after saving edit changes, user is redirected to the previous page (review detail)                                                      | :white_check_mark: |
 | if delete button is clicked, a modal requesting for confirmation appears, user can confirm or cancel the operation                      | :white_check_mark: |
 | the form to place a comment appears user can leave their comments                                                                       | :white_check_mark: |
 | after placing it, the comment is shown, with how long ago details                                                                       | :white_check_mark: |
-| if user is comment owner, a dromdown appears                                                                                            | :white_check_mark: |
+| if user is comment owner, a dropdown appears                                                                                            | :white_check_mark: |
 | if edit button is clicked, the form is editable, prefilled with existing data, user can edit the content                                | :white_check_mark: |
 | after saving edit changes, user sees the edited comment right away                                                                      | :white_check_mark: |
 | if delete button is clicked, a modal requesting for confirmation appears, user can confirm or cancel the operation                      | :white_check_mark: |
 | if user is not the review owner, the entire content is rendered, the comment form appears, but dropdown to edit post is no longer shown | :white_check_mark: |
-| **Review Deatail Page for logged out users**                                                                                            |
+| **Review Detail Page for logged out users**                                                                                            |
 | review detail page shows all the content, but user can not make further actions                                                         | :white_check_mark: |
 | **Contact form for logged in users**                                                                                                    |
 | contact page shows the form, upon submission a message appears                                                                           | :white_check_mark: |
 | **Contact form for logged out users**                                                                                                   |
-| contact page for logged out users is not available for marketing purposes                                                                | :white_check_mark: |
+| contact page for logged out users is not available for now             | :white_check_mark: |
 | **Profile Page**                                                                                                                        |
 | only if user is profile owner, they can edit their username, password, bio, updated content is displayed correctly                      | :white_check_mark: |
-| logged out users can see the profiles form other users correctly                                                                        | :white_check_mark: |
+| logged out users can see the profiles from other users correctly                                                                        | :white_check_mark: |
 | **Validation**                                                                                                                          |
 | all forms fields are validated and show proper alert messages if not filled correctly                                                   | :white_check_mark: |
 
@@ -343,6 +343,10 @@ After a from is submitted successfully a message will appear.
 
 WAVE Web Accessibility Evaluation Tool
 [W3C Validator](https://jigsaw.w3.org/css-validator/) was used for CSS validation, all passed with no error
+
+Dev Tool lighouse was used to text overall the site
+![Lighthouse Report](readme-docs/images/lighthouse-report.png)
+
 
 [Eslint](https://eslint.org/) was used for frontend code validation. multiple errors were fixed. Some have been deleted across the files. Code Institute Moment app wss used as guide,therefore most of the code structure was used in ReviewMe app as well.
 
@@ -380,7 +384,7 @@ I wrapped my return statement in P instead of div.
 - Star review field on ReviewCreateForm can be sent without selecting the stars. At the moment the field is optionaly, but for future feature will need to be set as a mandatory field. 
 - Console throws 401 / Unauthorized error if a user is not logged in. This type of error is acceptable as per C.I Walkthroughs, therefore ignored
 - if a url with non existing review/ or profile is searched (i.e: /profile/1234 or /reviews/776) user is redirected to the homepage, but the console shows 404 Not Found/ Bad request. This is an expected behavious from the console, (as per Mentor's confirmation as well) but definitely will need to be fixed in the future.
-
+- Some times when creating a review, product title's last letter is not uppercase. This will need resolving in the future.
 
 ## Technologies used
 

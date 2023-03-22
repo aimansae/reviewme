@@ -178,7 +178,9 @@ function ReviewEditForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <h3 className="text-center">Edit your review</h3>
       <Row>
+
         <Col md={12} xl={8} className="offset-xl-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>

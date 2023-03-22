@@ -152,7 +152,8 @@ function ReviewCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {/* message */}
+
+      <h2 className="text-center">Rate a product</h2>
       <Row>
         <Col md={12} xl={8} className="offset-xl-2">
 
