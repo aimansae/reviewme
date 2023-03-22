@@ -153,6 +153,7 @@ function Review(props) {
             </div>
           </Media>
         </Card.Body>
+        <hr className={styles.Line}/>
 
           <div className='row align-items-center ml-4'> 
         { 

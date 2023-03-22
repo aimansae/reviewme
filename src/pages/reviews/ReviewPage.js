@@ -46,13 +46,11 @@ function ReviewPage() {
         ]);
 
         setReview({ results: [review] });
-        // rating
-        // console.log(review);
+
         setComments(comments);
         const new_stars = review.rating;
         setStars(new_stars);
       } catch (err) {
-        // console.log(err);
         if ((err.response.status === 404) | (err.response.status === 400)) {
           history.push('/');
         }

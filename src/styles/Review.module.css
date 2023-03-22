@@ -14,7 +14,10 @@
 h5 {
   margin: 0 0;
 }
-
+.Line{
+  border-top: 4px solid #007bff26;
+  margin-top: 0;
+}
 .Span {
   color: #000000;
   font-style: italic;
@@ -34,7 +37,7 @@ h5 {
 }
 
 .ImgSize {
-  width: 30% !important;
+  width: 35% !important;
 
 
   transition: transform 0.5s, filter 1.5s ease-in-out;

@@ -1,10 +1,10 @@
 # ReviewME
 
-AMIRESPONSIVE IMAGE
+![Am I Responsive](readme-docs/images/ami-responsive.png)
 
 ## Introduction
 
-ReviewME is a social media platform where users can review a beauty product and share their experience with others. We understand the importance of self-care and believe that everyone deserves to feel confident and beautiful.
+ReviewME is a social media platform where users can review a beauty products and share their experience with others. We understand the importance of self-care and believe that everyone deserves to feel confident and beautiful.
 And this platform was designed as a tool to provide honest feedback and analysis of a specific beauty product (i.e creams, oils, makeup ).
 Nowdays, internet and social media is marketed in a way that makes it hard to find trustworthy sources, as such, Review is the perfect app to identify and consult honest feedback left in realtime.
 
@@ -54,19 +54,20 @@ Backend [Repository](https://github.com/aimansae/reviewme-api)
 
 ## UX User Experience
 
-ReviewMe website is created as a social media app where users are able to signin and reviews a product they have used
+ReviewMe website is created as a social media app where users are able to signin and review a product they have used.
+
 Users are able to:
 
 -   see all the product reviews,
--   create, edit delete a review
+-   create, edit delete their review
 -   like and save a review
--   place comment and see other comment from other users
--   see how many revies a certain profile have left
+-   place comment and see comments from other users
+-   see how many reviews a certain user has placed
 -   contact the customer service for any query
 
 ### User Stories
 
-User stories for backend can be found in a separate backend [file](https://github.com/aimansae/reviewme-api/blob/main/static/readmeDocs/userstories.md)
+User stories for backend API can be found in a separate [file](https://github.com/aimansae/reviewme-api/blob/main/static/readmeDocs/userstories.md)
 
 User stories for the frontend project can be found through [Github Issues](https://github.com/aimansae/reviewme/issues) and [Kanban Board](https://github.com/users/aimansae/projects/6) can also be consulted directly.
 
@@ -89,7 +90,7 @@ A mix of Google [Fonts Raleway](https://fonts.google.com/?query=raleway) and [La
 ### Wireframes
 
 <details>
-<summary><strong>A skeleton of the initial projet view can be found here below
+<summary><strong>A skeleton of the initial projcet view can be found here below
 </strong></summary>
 <br>
 
@@ -130,51 +131,60 @@ A mix of Google [Fonts Raleway](https://fonts.google.com/?query=raleway) and [La
 ### Navbar
 
 Navigation bar is fully responsive across all devices, and shows all available pages, according to a logged in or logged out user.
-A search field is shown across all pages. User can search by a product name
+A search field is shown across all pages. Users can search by a product name
 
 **For Logged In users:**
-IMAGE
+
+![Navbar Loggedin users](readme-docs/images/navbar-logged-in.png)
+
 **For Logged out users:**
-IMAGE
+
+![Navbar Loggedout users](readme-docs/images/navbar-logged-out.png)
+
 
 ### Homepage
 
 Homepage shows the review list to all users
-IMAGE
+
+![Homepage](readme-docs/images/homepage.png)
+
 
 ### Review Detail Page
 
 shows information related to the single review, upon click shows all the details and relative comments are displayed. For logged in users a form to place a comment will appear. Non logged in users will not see the form.
 
 **For Logged In users:**
-IMAGE
+
+![Review Detail Loggedin](readme-docs/images/detail-loggedin.png)
+
 **For Logged out users:**
-IMAGE
+
+![Review Detail Loggeout](readme-docs/images/detail-loggedout.png)
 
 ### Review Edit
 
 If user is the owner of the review, a dropdown menu to edit or delete the review is shown.
 
-For edit button a form prepopulated with previous data will appear and users will be able to make the necessary changes.
-For delete button a modal to ask for delete confirmation will be shown.
-Logged out users are not able to access review/id/edit page. The are redirected to homepage instead
+For edit button a form prepopulated with previous data will appear and users will be able to make the necessary changes. Same logic for comments applies
 
-IMAGE FOR EDIT
-IMAGE FOR DELETE MODAL
+Logged out users are not able to access review/id/edit page. They are redirected to homepage instead
 
+![Review Edit form](readme-docs/images/review-edit.png)
+
+For delete button a modal to ask for delete confirmation will be shown, same logic applies for comments.
+
+![Review  Delete modal](readme-docs/images/review-delete-modal.png)
 ### Profile Page
 
-Logged in users can see their own profile page, which will show bio, number or review and their reviews
-
-IMAGE
-
+Logged in users can see their own profile page, which will show their bio, number or review and their reviews.
 Profile owner has access to a dropdown menu to modify/change their personal details
 
-IMAGE
+![Owner Profile Page](readme-docs/images/profile-owner.png)
+
 
 Upon clicking on other users avatar, any user, logged in or not is redirected to their profile information
+![Profile Page Loggedout user](readme-docs/images/profile-page-loggedout.png)
 
-IMAGE
 
 ### Saved Page
 
@@ -184,7 +194,7 @@ Save tag will be green if the post was saved. This functionality allows users to
 
 Logged out users are redirected to homepage.
 
-IMAGE
+![Saved Liked Page](readme-docs/images/saved-liked-pages.png)
 
 ### Liked Page
 
@@ -196,25 +206,30 @@ Unlike functionality reverses the like color and count as expected.
 
 Logged out users have no access to liked page and are redirected to the homepage.
 
-IMAGE
 
 ### Contact Page
 
 Logged in users have access to contact page in case they have a question or a feedbacks. This is intended so a user, to know more about the platform has to signup. This part will be used in future for marketing purposes, to incourage registered users to insert their reviews.
 
 After a from is submitted successfully a message will appear.
+![Saved Liked Page](readme-docs/images/contact-form.png)
 
-IMAGE
 
 ## FUTURE FEATURES:
 
 -   allow users to filter product by most reviews product, by profile, price and other different criterias.
--   Based on the country the reviewer is placed in, a country field will be automatically prefilled and shown on the review. Users will be able to change/mofity this field directly from their profile.
--   allow users to post more than 1 picture for the product, so the review feels more reliable and accurate.
--   show accurate messages if a non logged in user tries to access pages they can't, instead of being redirected to homepage.
--   show contact page but upon submission a form will appear confirming that user must signup in order to send a contact request.
--   show a message when a edit action went through successfully with a timer function
+-   Based on the country the reviewer is placed in, a country field will be automatically prefilled and shown on the review. Users will be able to change/modity this field directly from their profile.
+-   allow users to post more than 1 picture for a product, so the review feels more reliable and accurate.
+-   show accurate messages if a non logged in user tries to access pages they can't, instead of being redirected to the homepage.
+-   show contact page to non logged in users,  but upon submission a form will appear confirming that user must signup in order to send a contact request.
+-   show a message when an edit action went through successfully possibly the message wil have a timer function
 -   show a message when unsave review action is performed
+- In the future users will be able to delete their profile
+- Users will be able to login with Googole accounts
+- Users will be able to contact the review owner to ask for opinions or suggestions
+- Comments will have like/ unlike functionality as well
+
+
 
 ## Testing
 
@@ -354,19 +369,17 @@ Some of the disabled problems are:
 I wrapped my return statement in P instead of div. 
 -   Fixed by Replacing paragraph tag with div tag
 - Star rating component was not rendering the stars active colour of the stars.
-**Fixed** thanks to tutor's help, by adding a ternary condition on on Reviews.js page
+**Fixed** thanks to tutor's help, by adding a ternary condition on on Reviews.js page return statement
+- if a user searched manually for /profiles/id the reviews rendered did not correspond with the profile itelf. Mentor Matina provided a huge help uderstanding where the issue was coming from. Profile context data was rendering /profile:id where the id was undefined, the correct way to access the current user was /profiles/${currentUser.profile.id}. Fixed by replacing it.
+- Star rating component not being prepopulaed in ReviewEditForm.js. The review object from the api was being returned correctly as intended, however the stars on the rating form itself were not diplayed with the rating star colour. **Fixed by** repeating the state for rating like so  setRating(rating); (line 58)
 
 
 ## Known Bug-Issues
-- Star rating component not being prepopulaed in ReviewEditForm.js. The review object from the api is being returned correctly as intended, however the stars on the rating form itself are not diplayed with the rating star colour. In addition to that the star review field will be set as a mandatory field.
 
-- Unlike, Unsave functionality was followed from C.I. walkthrough. Upon clicking unlike or unsave, the review is not being removed from the respective pages (Saved and Liked). User has to manually reload the page, in order to see the changes. This is definitely an issue that needs to be resolved in the future.
-
-## Future Features
-- In the future users will be able to delete their profile
-- Users will be able to login with Googole accounts
-- Users will be able to contact the review owner to ask for opinions or suggestions
-- Comments will have like/ unlike functionality as well
+- Unlike, Unsave functionality was followed from C.I. walkthrough. Upon clicking unlike or unsave, the review is not being removed immediately from the respective pages (Saved and Liked). User has to manually reload the page, in order to see the changes. This is definitely an issue that needs to be resolved in the future.
+- Star review field on ReviewCreateForm can be sent without selecting the stars. At the moment the field is optionaly, but for future feature will need to be set as a mandatory field. 
+- Console throws 401 / Unauthorized error if a user is not logged in. This type of error is acceptable as per C.I Walkthroughs, therefore ignored
+- if a url with non existing review/ or profile is searched (i.e: /profile/1234 or /reviews/776) user is redirected to the homepage, but the console shows 404 Not Found/ Bad request. This is an expected behavious from the console, (as per Mentor's confirmation as well) but definitely will need to be fixed in the future.
 
 
 ## Technologies used

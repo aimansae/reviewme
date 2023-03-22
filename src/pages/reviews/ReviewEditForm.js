@@ -20,7 +20,6 @@ import styles from '../../styles/ReviewCreateEditForm.module.css';
 import appStyles from '../../App.module.css';
 import btnStyles from '../../styles/Button.module.css';
 import { axiosReq } from '../../api/axiosDefaults';
-import iconStyle from '../../styles/DropDown.module.css';
 
 function ReviewEditForm() {
   const [errors, setErrors] = useState({});
@@ -40,7 +39,6 @@ function ReviewEditForm() {
     price: '',
   });
 
-  // rating: "", formData.append("rating", rating);
   const {
     product_title, description, image, price,
   } = postData;
@@ -57,7 +55,6 @@ function ReviewEditForm() {
           product_title, description, image, is_owner, price, rating,
         } = data;
         setRating(rating);
-        console.log(rating);
 
         is_owner
           ? setPostData({
@@ -70,7 +67,6 @@ function ReviewEditForm() {
     };
     handleMount();
   }, [history, id]);
-  console.log(rating);
 
   const handleChange = (event) => {
     setPostData({
@@ -196,12 +192,10 @@ function ReviewEditForm() {
               </figure>
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button}${btnStyles.Blue} btn `}
+                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
                   htmlFor="image-upload"
                 >
-                  <i
-                    className={`${iconStyle.IconColor} fa-solid fa-pen-to-square`}
-                  />
+
                   Change Image
                 </Form.Label>
               </div>
