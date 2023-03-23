@@ -61,7 +61,6 @@ function Contact() {
 
     try {
       await axiosReq.post('/contact/', formData);
-      // console.log(data);
       setMessage('Request sent successfully, we will contact you shortly..');
 
       // clear out the form after submission

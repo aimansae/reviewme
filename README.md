@@ -90,7 +90,7 @@ A mix of Google [Fonts Raleway](https://fonts.google.com/?query=raleway) and [La
 ### Wireframes
 
 <details>
-<summary><strong>A skeleton of the initial projcet view can be found here below
+<summary><strong>A skeleton of the initial project view can be found here below
 </strong></summary>
 <br>
 
@@ -243,9 +243,8 @@ After a from is submitted successfully a message will appear.
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | **Signup page**                                                                                                                         | :white_check_mark: |
 | Signup form renders correcty                                                                                                            | :white_check_mark: |
-| Signup form renders correcty                                                                                                            | :white_check_mark: |
 | Login link for existing users redirects to login form                                                                                   | :white_check_mark: |
-| Upon clicing on 'signup' login form shows as expected                                                                                                | :white_check_mark: |
+| Upon clicking on 'signup' login form shows as expected                                                                                                | :white_check_mark: |
 | Upon clicking on login button after inserting the info, user is redirected to homepage                                                                            | :white_check_mark: |
 | Navbar is updated correctly with content for logged in users                                                                            | :white_check_mark: |
 | **Login page**                                                                                                                          | :white_check_mark: |
@@ -284,8 +283,8 @@ After a from is submitted successfully a message will appear.
 | login/ directs to login page                                                                                                            | :white_check_mark: |
 | saved/ directs to home page                                                                                                             | :white_check_mark: |
 | liked/ directs to home page                                                                                                             | :white_check_mark: |
-| reviews:id/ directs user to the correct review page                                                                                     | :white_check_mark: |
-| profiles/:id directs to correct page                                                                                   | :white_check_mark: |
+| reviews:id/ directs user to the correct review detail page                                                                                     | :white_check_mark: |
+| profiles/:id directs to correct profile page                                                                                   | :white_check_mark: |
 | contact/ directs to home page                                                                                                           | :white_check_mark: |
 | wrong input or non existing endpoint / directs to no-results page correctly                                                             | :white_check_mark: |
 | **Search filter**                                                                                                                       | :white_check_mark: |
@@ -300,7 +299,7 @@ After a from is submitted successfully a message will appear.
 | if user is not the review owner, on click like icon changes color, count increases, review is saved in liked page                       | :white_check_mark: |
 | if user is not the review owner, on click unlike icon changes color, count decreases                                                    | :white_check_mark: |
 | hover on save button, if user is the post owner shows proper message (you can't save your own post)                                     | :white_check_mark: |
-| if user is not the preview owner, click on save button changes color, review is saved in saved page                                     | :white_check_mark: |
+| if user is not the review owner, click on save button changes color, review is saved in saved page                                     | :white_check_mark: |
 | comment icon, upon click opens review detail page and show a form to insert a comment                                                   | :white_check_mark: |
 | in case of no comments, a proper message is appearing                                                                                   | :white_check_mark: |
 | **Reviews/Homepage for logged out users**                                                                                               | :white_check_mark: |
@@ -374,14 +373,14 @@ I wrapped my return statement in P instead of div.
 -   Fixed by Replacing paragraph tag with div tag
 - Star rating component was not rendering the stars active colour of the stars.
 **Fixed** thanks to tutor's help, by adding a ternary condition on on Reviews.js page return statement
-- if a user searched manually for /profiles/id the reviews rendered did not correspond with the profile itelf. Mentor Matina provided a huge help uderstanding where the issue was coming from. Profile context data was rendering /profile:id where the id was undefined, the correct way to access the current user was /profiles/${currentUser.profile.id}. Fixed by replacing it.
+- if a user searched manually for /profiles/id the reviews rendered did not correspond with the profile itself. Mentor Matina provided a huge help uderstanding where the issue was coming from. Profile context data was rendering /profile:id where the id was undefined, the correct way to access the current user was /profiles/${currentUser.profile.id}. Fixed by replacing it.
 - Star rating component not being prepopulaed in ReviewEditForm.js. The review object from the api was being returned correctly as intended, however the stars on the rating form itself were not diplayed with the rating star colour. **Fixed by** repeating the state for rating like so  setRating(rating); (line 58)
 
 
 ## Known Bug-Issues
 
 - Unlike, Unsave functionality was followed from C.I. walkthrough. Upon clicking unlike or unsave, the review is not being removed immediately from the respective pages (Saved and Liked). User has to manually reload the page, in order to see the changes. This is definitely an issue that needs to be resolved in the future.
-- Star review field on ReviewCreateForm can be sent without selecting the stars. At the moment the field is optionaly, but for future feature will need to be set as a mandatory field. 
+- Star review field on ReviewCreateForm can be sent without selecting the stars. At the moment the field is optional, but for future feature will need to be set as a mandatory field. 
 - Console throws 401 / Unauthorized error if a user is not logged in. This type of error is acceptable as per C.I Walkthroughs, therefore ignored
 - if a url with non existing review/ or profile is searched (i.e: /profile/1234 or /reviews/776) user is redirected to the homepage, but the console shows 404 Not Found/ Bad request. This is an expected behavious from the console, (as per Mentor's confirmation as well) but definitely will need to be fixed in the future.
 - Some times when creating a review, product title's last letter is not uppercase. This will need resolving in the future.
@@ -486,6 +485,7 @@ In package.json, in scripts add:
 ## Credits
 
 -   Code Institute walkthroughs for API and Moments app were used as a main guide to build this project. Im heavily crediting the code provided by the walkthrought lessons, both for DRF API and for MOMENTS app.
+- to mention profile edit functionality was followed from C.I
 
 -   Tony A., a fellow student from Code Institute needs to be credited for help on the star rating functionality and the modal in my app, I was given awesome advices, patience and Guidance
     . Thank you for the rapid response and all the help you provided Tony!
