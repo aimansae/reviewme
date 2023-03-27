@@ -44,7 +44,7 @@ Backend [Repository](https://github.com/aimansae/reviewme-api)
 -   [Future Features](#future-features 'Future Features')
 -   [Testing](#testing 'Testing')
 -   [Bugs](#bugs 'Bugs')
-    -   [Known Bug-Issues](#known-bug-issues 'Known Bug-Issues')
+    -   [Unfixed Bugs](#unfixed-bugs 'Unfixed Bugs')
 -   [Technologies used](#technologies-used 'Technologies used')
     -   [Frameworks Libraries](#frameworks-libraries 'Frameworks Libraries Used')
 -   [Additional Resources](#additional-resources 'Additional Resources')
@@ -377,14 +377,14 @@ I wrapped my return statement in P instead of div.
 - Star rating component not being prepopulaed in ReviewEditForm.js. The review object from the api was being returned correctly as intended, however the stars on the rating form itself were not diplayed with the rating star colour. **Fixed by** repeating the state for rating like so  setRating(rating); (line 58)
 
 
-## Known Bug-Issues
+## Unfixed Bugs
 
 - Unlike, Unsave functionality was followed from C.I. walkthrough. Upon clicking unlike or unsave, the review is not being removed immediately from the respective pages (Saved and Liked). User has to manually reload the page, in order to see the changes. This is definitely an issue that needs to be resolved in the future.
 - Star review field on ReviewCreateForm can be sent without selecting the stars. At the moment the field is optional, but for future feature will need to be set as a mandatory field. 
 - Console throws 401 / Unauthorized error if a user is not logged in. This type of error is acceptable as per C.I Walkthroughs, therefore ignored
-- if a url with non existing review/ or profile is searched (i.e: /profile/1234 or /reviews/776) user is redirected to the homepage, but the console shows 404 Not Found/ Bad request. This is an expected behavious from the console, (as per Mentor's confirmation as well) but definitely will need to be fixed in the future.
-- Some times when creating a review, product title's last letter is not uppercase. This will need resolving in the future.
-
+- if a url with non existing review/ or profile is searched (i.e: /profile/1234 or /reviews/776) user is redirected to the homepage, but the console shows 404 Not Found/ Bad request. This is an expected behaviour from the console, (as per Mentor's confirmation as well) but definitely will need to be fixed in the future.
+- Sometimes when creating a review, product title's last letter is not uppercase. This will need resolving in the future.
+- Sometimes 'Process is not defined error' was seen in local workspace console. However being intermittent I was not able to fix it. If is definitely as issue to be resolved in future.
 ## Technologies used
 
 -   JavaScript
