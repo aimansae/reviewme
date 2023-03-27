@@ -385,6 +385,7 @@ I wrapped my return statement in P instead of div.
 - if a url with non existing review/ or profile is searched (i.e: /profile/1234 or /reviews/776) user is redirected to the homepage, but the console shows 404 Not Found/ Bad request. This is an expected behaviour from the console, (as per Mentor's confirmation as well) but definitely will need to be fixed in the future.
 - Sometimes when creating a review, product title's last letter is not uppercase. This will need resolving in the future.
 - Sometimes 'Process is not defined error' was seen in local workspace console. However being intermittent I was not able to fix it. If is definitely as issue to be resolved in future.
+
 ## Technologies used
 
 -   JavaScript
